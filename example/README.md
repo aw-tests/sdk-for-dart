@@ -6,8 +6,8 @@ Init your Appwrite client:
   Client client = Client();
 
   client
-      .setEndpoint(&#039;https://localhost/v1&#039;) // Your Appwrite Endpoint
-      .setProject(&#039;5e8cf4f46b5e8&#039;) // Your project ID
+      .setEndpoint('https://localhost/v1') // Your Appwrite Endpoint
+      .setProject('5e8cf4f46b5e8') // Your project ID
       .setSelfSigned()
   ;
 
@@ -18,9 +18,9 @@ Create a new user and session:
 ```dart
   Account account = Account(client);
 
- Response user = await account.create(email: &#039;me@appwrite.io&#039;, password: &#039;password&#039;, name: &#039;My Name&#039;);
+ Response user = await account.create(email: 'me@appwrite.io', password: 'password', name: 'My Name');
  
- Response session = await account.createSession(email: &#039;me@appwrite.io&#039;, password: &#039;password&#039;);
+ Response session = await account.createSession(email: 'me@appwrite.io', password: 'password');
 
 ```
 
@@ -37,11 +37,11 @@ Upload File:
 ```dart
 Storage storage = Storage(client);
 
-MultipartFile file = MultipartFile.fromFile(&#039;./path-to-file/image.jpg&#039;, filename: &#039;image.jpg&#039;);
+MultipartFile file = MultipartFile.fromFile('./path-to-file/image.jpg', filename: 'image.jpg');
 
 storage.createFile(
     file: file,
-    read: [&#039;*&#039;],
+    read: ['*'],
     write: []
 )
 .then((response) {
