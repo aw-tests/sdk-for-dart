@@ -40,7 +40,7 @@ class Storage extends Service {
      /// assigned to read and write access unless he has passed custom values for
      /// read and write arguments.
      ///
-    Future<Response> createFile({@required File file, @required List read, @required List write}) {
+    Future<Response> createFile({@required MultipartFile file, @required List read, @required List write}) {
         final String path = '/storage/files';
 
         final Map<String, dynamic> params = {
@@ -133,7 +133,7 @@ class Storage extends Service {
           queryParameters:params,
         );
 
-        return Uri.toString();
+        return url.toString();
     }
 
      /// Get File Preview
@@ -163,7 +163,7 @@ class Storage extends Service {
           queryParameters:params,
         );
 
-        return Uri.toString();
+        return url.toString();
     }
 
      /// Get File for View
@@ -187,6 +187,6 @@ class Storage extends Service {
           queryParameters:params,
         );
 
-        return Uri.toString();
+        return url.toString();
     }
 }
