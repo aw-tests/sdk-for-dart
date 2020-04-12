@@ -8,7 +8,7 @@ Init your Appwrite client:
   client
       .setEndpoint('https://localhost/v1') // Your Appwrite Endpoint
       .setProject('5e8cf4f46b5e8') // Your project ID
-      .setSelfSigned()
+      .setSelfSigned() // Remove in production
   ;
 
 ```
@@ -16,11 +16,11 @@ Init your Appwrite client:
 Create a new user and session:
 
 ```dart
-  Account account = Account(client);
+Account account = Account(client);
 
- Response user = await account.create(email: 'me@appwrite.io', password: 'password', name: 'My Name');
+Response user = await account.create(email: 'me@appwrite.io', password: 'password', name: 'My Name');
  
- Response session = await account.createSession(email: 'me@appwrite.io', password: 'password');
+Response session = await account.createSession(email: 'me@appwrite.io', password: 'password');
 
 ```
 
