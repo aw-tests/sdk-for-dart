@@ -30,7 +30,7 @@ class Client {
         
         this.headers = {
             'content-type': 'application/json',
-            'x-sdk-version': 'appwrite:dart:0.1.1',
+            'x-sdk-version': ':dart:0.1.1',
         };
 
         this.config = {};
@@ -44,19 +44,6 @@ class Client {
         final Directory dir = new Directory('$path/cookies');
         await dir.create();
         return dir;
-    }
-
-     /// Your project ID
-    Client setProject(value) {
-        config['project'] = value;
-        addHeader('X-Appwrite-Project', value);
-        return this;
-    }
-
-    Client setLocale(value) {
-        config['locale'] = value;
-        addHeader('X-Appwrite-Locale', value);
-        return this;
     }
 
     Client setSelfSigned({bool status = true}) {
@@ -96,7 +83,7 @@ class Client {
 
             PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
-            addHeader('Origin', 'appwrite-' + type + '://' + packageInfo.packageName);
+            addHeader('Origin', '-' + type + '://' + packageInfo.packageName);
 
             init = true;
         }
