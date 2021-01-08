@@ -1,11 +1,6 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:dio/adapter.dart';
-import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:cookie_jar/cookie_jar.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:package_info/package_info.dart';
 
 import 'enums.dart';
 
@@ -15,41 +10,33 @@ class Client {
     Map<String, String> headers;
     Map<String, String> config;
     bool selfSigned;
-    bool init = false;
+    bool initialized = false;
     Dio http;
-    PersistCookieJar cookieJar;
 
     Client({this.endPoint = 'https://appwrite.io/v1', this.selfSigned = false, Dio http}) : this.http = http ?? Dio() {
         
-        type = (Platform.isIOS) ? 'ios' : type;
-        type = (Platform.isMacOS) ? 'macos' : type;
-        type = (Platform.isAndroid) ? 'android' : type;
-        type = (Platform.isLinux) ? 'linux' : type;
-        type = (Platform.isWindows) ? 'windows' : type;
-        type = (Platform.isFuchsia) ? 'fuchsia' : type;
-        
         this.headers = {
             'content-type': 'application/json',
-            'x-sdk-version': 'appwrite:dart:0.1.1',
+            'x-sdk-version': 'appwrite:dart:0.1.0',
         };
 
         this.config = {};
 
         assert(endPoint.startsWith(RegExp("http://|https://")), "endPoint $endPoint must start with 'http'");
     }
-    
-    Future<Directory> _getCookiePath() async {
-        final directory = await getApplicationDocumentsDirectory();
-        final path = directory.path;
-        final Directory dir = new Directory('$path/cookies');
-        await dir.create();
-        return dir;
-    }
+
 
      /// Your project ID
     Client setProject(value) {
         config['project'] = value;
         addHeader('X-Appwrite-Project', value);
+        return this;
+    }
+
+     /// Your secret API key
+    Client setKey(value) {
+        config['key'] = value;
+        addHeader('X-Appwrite-Key', value);
         return this;
     }
 
@@ -76,6 +63,13 @@ class Client {
         return this;
     }
 
+    Future init() async {
+        if(!initialized) {
+          this.http.options.baseUrl = this.endPoint;
+          this.http.options.validateStatus = (status) => status < 400;
+        }
+    }
+
     Future<Response> call(HttpMethod method, {String path = '', Map<String, String> headers = const {}, Map<String, dynamic> params = const {}}) async {
         if(selfSigned) {
             // Allow self signed requests
@@ -85,21 +79,7 @@ class Client {
             };
         }
 
-        if(!init) {
-            final Directory cookieDir = await _getCookiePath();
-
-            cookieJar = new PersistCookieJar(dir:cookieDir.path);
-
-            this.http.options.baseUrl = this.endPoint;
-            this.http.options.validateStatus = (status) => status < 400;
-            this.http.interceptors.add(CookieManager(cookieJar));
-
-            PackageInfo packageInfo = await PackageInfo.fromPlatform();
-
-            addHeader('Origin', 'appwrite-' + type + '://' + packageInfo.packageName);
-
-            init = true;
-        }
+        await this.init();
 
         // Origin is hardcoded for testing
         Options options = Options(
@@ -112,6 +92,10 @@ class Client {
         }
 
         if (method == HttpMethod.get) {
+            params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
+              params[key] = params[key].toString();
+            }});
+            
             return http.get(path, queryParameters: params, options: options);
         } else {
             return http.request(path, data: params, options: options);

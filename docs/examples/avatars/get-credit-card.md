@@ -1,20 +1,18 @@
-import 'package:appwrite/appwrite.dart';
+import 'package:dart_appwrite/dart_appwrite.dart';
 
-// Init SDK
-Client client = Client();
-Avatars avatars = Avatars(client);
+void main() { // Init SDK
+  Client client = Client();
+  Avatars avatars = Avatars(client);
 
-client
+  client
+    .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
-;
+    .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
+  ;
 
-Future result = avatars.getCreditCard(
+  String result = avatars.getCreditCard(
     code: 'amex',
-);
+  );
 
-result
-  .then((response) {
-    print(response);
-  }).catchError((error) {
-    print(error);
-  });
+  print(result); // Resource URL string
+}

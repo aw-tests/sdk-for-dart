@@ -1,8 +1,6 @@
 
-
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-
 import "../client.dart";
 import '../enums.dart';
 import "../service.dart";
@@ -122,17 +120,22 @@ class Storage extends Service {
 
         final Map<String, dynamic> params = {
             'project': client.config['project'],
+            'key': client.config['key'],
         };
 
+        params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
+          params[key] = params[key].toString();
+        }});
+        
         Uri endpoint = Uri.parse(client.endPoint);
-        Uri url = new Uri(scheme: endpoint.scheme,
+        Uri location = new Uri(scheme: endpoint.scheme,
           host: endpoint.host,
           port: endpoint.port,
           path: endpoint.path + path,
           queryParameters:params,
         );
 
-        return url.toString();
+        return location.toString();
     }
 
      /// Get File Preview
@@ -152,17 +155,22 @@ class Storage extends Service {
             'background': background,
             'output': output,
             'project': client.config['project'],
+            'key': client.config['key'],
         };
 
+        params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
+          params[key] = params[key].toString();
+        }});
+        
         Uri endpoint = Uri.parse(client.endPoint);
-        Uri url = new Uri(scheme: endpoint.scheme,
+        Uri location = new Uri(scheme: endpoint.scheme,
           host: endpoint.host,
           port: endpoint.port,
           path: endpoint.path + path,
           queryParameters:params,
         );
 
-        return url.toString();
+        return location.toString();
     }
 
      /// Get File for View
@@ -176,16 +184,21 @@ class Storage extends Service {
         final Map<String, dynamic> params = {
             'as': as,
             'project': client.config['project'],
+            'key': client.config['key'],
         };
 
+        params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
+          params[key] = params[key].toString();
+        }});
+        
         Uri endpoint = Uri.parse(client.endPoint);
-        Uri url = new Uri(scheme: endpoint.scheme,
+        Uri location = new Uri(scheme: endpoint.scheme,
           host: endpoint.host,
           port: endpoint.port,
           path: endpoint.path + path,
           queryParameters:params,
         );
 
-        return url.toString();
+        return location.toString();
     }
 }
