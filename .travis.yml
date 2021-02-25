@@ -5,8 +5,8 @@ dart: stable
 os: linux
 
 install:
+  - mkdir -p  ~/.pub-cache
   - >-
-      mkdir -p .pub-cache &&
       cat <<EOF > ~/.pub-cache/credentials.json
         {
           "accessToken":"$PUB_ACCESS_TOKEN",
