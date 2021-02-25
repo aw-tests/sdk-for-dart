@@ -9,15 +9,15 @@ deploy:
   skip_cleanup: true
   script: >-
       mkdir -p .pub-cache &&
-        cat <<EOF > ~/.pub-cache/credentials.json
-          {
-            "accessToken":"$PUB_ACCESS_TOKEN",
-            "refreshToken":"$PUB_REFRESH_TOKEN",
-            "tokenEndpoint":"$PUB_TOKEN_EDNPOINT",
-            "scopes":["https://www.googleapis.com/auth/plus.me","https://www.googleapis.com/auth/userinfo.email"],
-            "expiration":$PUB_EXPIRATION
-          }
-        EOF &&
-        pub publish -f
+      cat <<EOF > ~/.pub-cache/credentials.json
+        {
+          "accessToken":"$PUB_ACCESS_TOKEN",
+          "refreshToken":"$PUB_REFRESH_TOKEN",
+          "tokenEndpoint":"$PUB_TOKEN_EDNPOINT",
+          "scopes":["https://www.googleapis.com/auth/plus.me","https://www.googleapis.com/auth/userinfo.email"],
+          "expiration":$PUB_EXPIRATION
+        }
+      EOF &&
+      pub publish -f
   on:
     tags: true
