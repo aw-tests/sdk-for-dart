@@ -15,7 +15,6 @@ install:
       "scopes":["https://www.googleapis.com/auth/plus.me","https://www.googleapis.com/auth/userinfo.email"],
       "expiration":$PUB_EXPIRATION
     }
-  EOF
 
 deploy:
   provider: script
