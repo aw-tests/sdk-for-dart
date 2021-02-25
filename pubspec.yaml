@@ -1,6 +1,6 @@
-name: dart_appwrite
+name: beta_test_apw
 version: 0.1.0
-description: Appwrite is an open-source self-hosted backend server that abstract and simplify complex and repetitive development tasks behind a very simple REST API
+description: demo
 homepage: https://appwrite.io
 repository: https://github.com/appwrite/sdk-for-dart
 issue_tracker: https://github.com/appwrite/sdk-generator/issues
