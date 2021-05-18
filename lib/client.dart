@@ -1,28 +1,26 @@
-import 'dart:io';
-import 'package:dio/dio.dart';
-import 'package:dio/adapter.dart';
-
-import 'enums.dart';
+part of dart_appwrite;
 
 class Client {
     String endPoint;
     String type = 'unknown';
-    Map<String, String> headers;
-    Map<String, String> config;
+    Map<String, String>? headers;
+    late Map<String, String> config;
     bool selfSigned;
     bool initialized = false;
     Dio http;
 
-    Client({this.endPoint = 'https://appwrite.io/v1', this.selfSigned = false, Dio http}) : this.http = http ?? Dio() {
+    Client({this.endPoint = 'https://appwrite.io/v1', this.selfSigned = false, Dio? http}) : this.http = http ?? Dio() {
         
         this.headers = {
             'content-type': 'application/json',
-            'x-sdk-version': 'appwrite:dart:0.1.0',
+            'x-sdk-version': 'appwrite:dart:0.5.0-dev.1',
+            'X-Appwrite-Response-Format':'0.8.0',
         };
 
         this.config = {};
 
         assert(endPoint.startsWith(RegExp("http://|https://")), "endPoint $endPoint must start with 'http'");
+        init();
     }
 
 
@@ -37,6 +35,13 @@ class Client {
     Client setKey(value) {
         config['key'] = value;
         addHeader('X-Appwrite-Key', value);
+        return this;
+    }
+
+     /// Your secret JSON Web Token
+    Client setJWT(value) {
+        config['jWT'] = value;
+        addHeader('X-Appwrite-JWT', value);
         return this;
     }
 
@@ -58,19 +63,17 @@ class Client {
     }
 
     Client addHeader(String key, String value) {
-        headers[key] = value;
+        headers![key] = value;
         
         return this;
     }
 
-    Future init() async {
-        if(!initialized) {
+    void init() {
           this.http.options.baseUrl = this.endPoint;
-          this.http.options.validateStatus = (status) => status < 400;
-        }
+          this.http.options.validateStatus = (status) => status! < 400;
     }
 
-    Future<Response> call(HttpMethod method, {String path = '', Map<String, String> headers = const {}, Map<String, dynamic> params = const {}}) async {
+    Future<Response> call(HttpMethod method, {String path = '', Map<String, String> headers = const {}, Map<String, dynamic> params = const {}, ResponseType? responseType}) async {
         if(selfSigned) {
             // Allow self signed requests
             (http.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
@@ -79,26 +82,47 @@ class Client {
             };
         }
 
-        await this.init();
-
         // Origin is hardcoded for testing
         Options options = Options(
-            headers: {...this.headers, ...headers},
+            headers: {...this.headers!, ...headers},
             method: method.name(),
+            responseType: responseType,
+            listFormat: ListFormat.multiCompatible,
         );
+        try {
 
-        if(headers['content-type'] == 'multipart/form-data') {
-            return http.request(path, data: FormData.fromMap(params), options: options);
-        }
+            if(headers['content-type'] == 'multipart/form-data') {
+                return await http.request(path, data: FormData.fromMap(params,ListFormat.multiCompatible), options: options);
+            }
 
-        if (method == HttpMethod.get) {
-            params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
-              params[key] = params[key].toString();
-            }});
-            
-            return http.get(path, queryParameters: params, options: options);
-        } else {
-            return http.request(path, data: params, options: options);
+            if (method == HttpMethod.get) {
+                params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
+                params[key] = params[key].toString();
+                }});
+                
+                return await http.get(path, queryParameters: params, options: options);
+            } else {
+                return await http.request(path, data: params, options: options);
+            }
+        } on DioError catch(e) {
+          if(e.response == null) {
+            throw AppwriteException(e.message);
+          }
+          if(responseType == ResponseType.bytes) {
+            if ((e.response!.headers.value('content-type') ?? '').contains('application/json')) {
+              final res = json.decode(utf8.decode(e.response!.data));
+              throw AppwriteException(res['message'],res['code'], res);
+            } else {
+              throw AppwriteException(e.message);
+            }
+          }
+          if ((e.response!.headers.value('content-type') ?? '').contains('application/json')) {
+            throw AppwriteException(e.response!.data['message'],e.response!.data['code'], e.response!.data);
+          } else {
+            throw AppwriteException(e.response!.data,e.response!.statusCode, e.response!.data);
+          }
+        } catch(e) {
+          throw AppwriteException(e.toString());
         }
     }
 }

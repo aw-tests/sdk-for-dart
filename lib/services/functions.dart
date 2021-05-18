@@ -1,9 +1,5 @@
+part of dart_appwrite;
 
-import 'package:dio/dio.dart';
-import 'package:meta/meta.dart';
-import "../client.dart";
-import '../enums.dart';
-import "../service.dart";
 
 class Functions extends Service {
     Functions(Client client): super(client);
@@ -13,7 +9,7 @@ class Functions extends Service {
      /// Get a list of all the project's functions. You can use the query params to
      /// filter your results.
      ///
-    Future<Response> list({String search = '', int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
+    Future<Response> list({String search = &#039;&#039;, int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
@@ -36,7 +32,7 @@ class Functions extends Service {
      /// [permissions](/docs/permissions) to allow different project users or team
      /// with access to execute the function using the client API.
      ///
-    Future<Response> create({@required String name, @required List execute, @required String env, Map vars = const {}, List events = const [], String schedule = '', int timeout = 15}) {
+    Future<Response> create({required String name, required List execute, required String env, Map vars = const {}, List events = const [], String schedule = &#039;&#039;, int timeout = 15}) {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
@@ -60,7 +56,7 @@ class Functions extends Service {
      ///
      /// Get a function by its unique ID.
      ///
-    Future<Response> get({@required String functionId}) {
+    Future<Response> get({required String functionId}) {
         final String path = '/functions/{functionId}'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -77,7 +73,7 @@ class Functions extends Service {
      ///
      /// Update function by its unique ID.
      ///
-    Future<Response> update({@required String functionId, @required String name, @required List execute, Map vars = const {}, List events = const [], String schedule = '', int timeout = 15}) {
+    Future<Response> update({required String functionId, required String name, required List execute, Map vars = const {}, List events = const [], String schedule = &#039;&#039;, int timeout = 15}) {
         final String path = '/functions/{functionId}'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -100,7 +96,7 @@ class Functions extends Service {
      ///
      /// Delete a function by its unique ID.
      ///
-    Future<Response> delete({@required String functionId}) {
+    Future<Response> delete({required String functionId}) {
         final String path = '/functions/{functionId}'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -117,10 +113,10 @@ class Functions extends Service {
      ///
      /// Get a list of all the current user function execution logs. You can use the
      /// query params to filter your results. On admin mode, this endpoint will
-     /// return a list of all of the project's teams. [Learn more about different
-     /// API modes](/docs/admin).
+     /// return a list of all of the project's executions. [Learn more about
+     /// different API modes](/docs/admin).
      ///
-    Future<Response> listExecutions({@required String functionId, String search = '', int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
+    Future<Response> listExecutions({required String functionId, String search = &#039;&#039;, int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
         final String path = '/functions/{functionId}/executions'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -144,10 +140,11 @@ class Functions extends Service {
      /// updates on the current execution status. Once this endpoint is called, your
      /// function execution process will start asynchronously.
      ///
-    Future<Response> createExecution({@required String functionId}) {
+    Future<Response> createExecution({required String functionId, String data = &#039;&#039;}) {
         final String path = '/functions/{functionId}/executions'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
+            'data': data,
         };
 
         final Map<String, String> headers = {
@@ -161,7 +158,7 @@ class Functions extends Service {
      ///
      /// Get a function execution log by its unique ID.
      ///
-    Future<Response> getExecution({@required String functionId, @required String executionId}) {
+    Future<Response> getExecution({required String functionId, required String executionId}) {
         final String path = '/functions/{functionId}/executions/{executionId}'.replaceAll(RegExp('{functionId}'), functionId).replaceAll(RegExp('{executionId}'), executionId);
 
         final Map<String, dynamic> params = {
@@ -180,7 +177,7 @@ class Functions extends Service {
      /// endpoint to switch the code tag that should be executed by the execution
      /// endpoint.
      ///
-    Future<Response> updateTag({@required String functionId, @required String tag}) {
+    Future<Response> updateTag({required String functionId, required String tag}) {
         final String path = '/functions/{functionId}/tag'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -199,7 +196,7 @@ class Functions extends Service {
      /// Get a list of all the project's code tags. You can use the query params to
      /// filter your results.
      ///
-    Future<Response> listTags({@required String functionId, String search = '', int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
+    Future<Response> listTags({required String functionId, String search = &#039;&#039;, int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
         final String path = '/functions/{functionId}/tags'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -229,7 +226,7 @@ class Functions extends Service {
      /// 
      /// Use the "command" param to set the entry point used to execute your code.
      ///
-    Future<Response> createTag({@required String functionId, @required String command, @required MultipartFile code}) {
+    Future<Response> createTag({required String functionId, required String command, required MultipartFile code}) {
         final String path = '/functions/{functionId}/tags'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -248,7 +245,7 @@ class Functions extends Service {
      ///
      /// Get a code tag by its unique ID.
      ///
-    Future<Response> getTag({@required String functionId, @required String tagId}) {
+    Future<Response> getTag({required String functionId, required String tagId}) {
         final String path = '/functions/{functionId}/tags/{tagId}'.replaceAll(RegExp('{functionId}'), functionId).replaceAll(RegExp('{tagId}'), tagId);
 
         final Map<String, dynamic> params = {
@@ -265,7 +262,7 @@ class Functions extends Service {
      ///
      /// Delete a code tag by its unique ID.
      ///
-    Future<Response> deleteTag({@required String functionId, @required String tagId}) {
+    Future<Response> deleteTag({required String functionId, required String tagId}) {
         final String path = '/functions/{functionId}/tags/{tagId}'.replaceAll(RegExp('{functionId}'), functionId).replaceAll(RegExp('{tagId}'), tagId);
 
         final Map<String, dynamic> params = {

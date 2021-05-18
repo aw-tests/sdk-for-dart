@@ -1,9 +1,5 @@
+part of dart_appwrite;
 
-import 'package:dio/dio.dart';
-import 'package:meta/meta.dart';
-import "../client.dart";
-import '../enums.dart';
-import "../service.dart";
 
 class Users extends Service {
     Users(Client client): super(client);
@@ -13,7 +9,7 @@ class Users extends Service {
      /// Get a list of all the project's users. You can use the query params to
      /// filter your results.
      ///
-    Future<Response> list({String search = '', int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
+    Future<Response> list({String search = &#039;&#039;, int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
         final String path = '/users';
 
         final Map<String, dynamic> params = {
@@ -34,7 +30,7 @@ class Users extends Service {
      ///
      /// Create a new user.
      ///
-    Future<Response> create({@required String email, @required String password, String name = ''}) {
+    Future<Response> create({required String email, required String password, String name = &#039;&#039;}) {
         final String path = '/users';
 
         final Map<String, dynamic> params = {
@@ -54,7 +50,7 @@ class Users extends Service {
      ///
      /// Get a user by its unique ID.
      ///
-    Future<Response> get({@required String userId}) {
+    Future<Response> get({required String userId}) {
         final String path = '/users/{userId}'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -71,7 +67,7 @@ class Users extends Service {
      ///
      /// Delete a user by its unique ID.
      ///
-    Future<Response> deleteUser({@required String userId}) {
+    Future<Response> delete({required String userId}) {
         final String path = '/users/{userId}'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -88,7 +84,7 @@ class Users extends Service {
      ///
      /// Get a user activity logs list by its unique ID.
      ///
-    Future<Response> getLogs({@required String userId}) {
+    Future<Response> getLogs({required String userId}) {
         final String path = '/users/{userId}/logs'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -105,7 +101,7 @@ class Users extends Service {
      ///
      /// Get the user preferences by its unique ID.
      ///
-    Future<Response> getPrefs({@required String userId}) {
+    Future<Response> getPrefs({required String userId}) {
         final String path = '/users/{userId}/prefs'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -123,7 +119,7 @@ class Users extends Service {
      /// Update the user preferences by its unique ID. You can pass only the
      /// specific settings you wish to update.
      ///
-    Future<Response> updatePrefs({@required String userId, @required Map prefs}) {
+    Future<Response> updatePrefs({required String userId, required Map prefs}) {
         final String path = '/users/{userId}/prefs'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -141,7 +137,7 @@ class Users extends Service {
      ///
      /// Get the user sessions list by its unique ID.
      ///
-    Future<Response> getSessions({@required String userId}) {
+    Future<Response> getSessions({required String userId}) {
         final String path = '/users/{userId}/sessions'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -158,7 +154,7 @@ class Users extends Service {
      ///
      /// Delete all user's sessions by using the user's unique ID.
      ///
-    Future<Response> deleteSessions({@required String userId}) {
+    Future<Response> deleteSessions({required String userId}) {
         final String path = '/users/{userId}/sessions'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -175,7 +171,7 @@ class Users extends Service {
      ///
      /// Delete a user sessions by its unique ID.
      ///
-    Future<Response> deleteSession({@required String userId, @required String sessionId}) {
+    Future<Response> deleteSession({required String userId, required String sessionId}) {
         final String path = '/users/{userId}/sessions/{sessionId}'.replaceAll(RegExp('{userId}'), userId).replaceAll(RegExp('{sessionId}'), sessionId);
 
         final Map<String, dynamic> params = {
@@ -192,7 +188,7 @@ class Users extends Service {
      ///
      /// Update the user status by its unique ID.
      ///
-    Future<Response> updateStatus({@required String userId, @required String status}) {
+    Future<Response> updateStatus({required String userId, required String status}) {
         final String path = '/users/{userId}/status'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
