@@ -188,7 +188,7 @@ class Users extends Service {
      ///
      /// Update the user status by its unique ID.
      ///
-    Future<Response> updateStatus({required String userId, required String status}) {
+    Future<Response> updateStatus({required String userId, required int status}) {
         final String path = '/users/{userId}/status'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
