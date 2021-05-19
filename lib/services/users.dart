@@ -9,7 +9,7 @@ class Users extends Service {
      /// Get a list of all the project's users. You can use the query params to
      /// filter your results.
      ///
-    Future<Response> list({String search = &#039;&#039;, int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
+    Future<Response> list({String search = '', int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
         final String path = '/users';
 
         final Map<String, dynamic> params = {
@@ -30,7 +30,7 @@ class Users extends Service {
      ///
      /// Create a new user.
      ///
-    Future<Response> create({required String email, required String password, String name = &#039;&#039;}) {
+    Future<Response> create({required String email, required String password, String name = ''}) {
         final String path = '/users';
 
         final Map<String, dynamic> params = {

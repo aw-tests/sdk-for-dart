@@ -108,7 +108,7 @@ class Account extends Service {
      /// to pass in the new password, and the old password. For users created with
      /// OAuth and Team Invites, oldPassword is optional.
      ///
-    Future<Response> updatePassword({required String password, String oldPassword = &#039;&#039;}) {
+    Future<Response> updatePassword({required String password, String oldPassword = ''}) {
         final String path = '/account/password';
 
         final Map<String, dynamic> params = {
