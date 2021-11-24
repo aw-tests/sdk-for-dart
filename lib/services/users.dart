@@ -8,7 +8,7 @@ class Users extends Service {
      /// Get a list of all the project's users. You can use the query params to
      /// filter your results.
      ///
-     Future list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+     Future<models.UserList> list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
         final String path = '/users';
 
         final Map<String, dynamic> params = {
@@ -25,14 +25,14 @@ class Users extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.UserList.fromMap(res.data);
     }
 
      /// Create User
      ///
      /// Create a new user.
      ///
-     Future create({required String userId, required String email, required String password, String? name}) async {
+     Future<models.User> create({required String userId, required String email, required String password, String? name}) async {
         final String path = '/users';
 
         final Map<String, dynamic> params = {
@@ -47,14 +47,14 @@ class Users extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.User.fromMap(res.data);
     }
 
      /// Get User
      ///
      /// Get a user by its unique ID.
      ///
-     Future get({required String userId}) async {
+     Future<models.User> get({required String userId}) async {
         final String path = '/users/{userId}'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -65,7 +65,7 @@ class Users extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.User.fromMap(res.data);
     }
 
      /// Delete User
@@ -90,7 +90,7 @@ class Users extends Service {
      ///
      /// Update the user email by its unique ID.
      ///
-     Future updateEmail({required String userId, required String email}) async {
+     Future<models.User> updateEmail({required String userId, required String email}) async {
         final String path = '/users/{userId}/email'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -102,17 +102,19 @@ class Users extends Service {
         };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.User.fromMap(res.data);
     }
 
      /// Get User Logs
      ///
      /// Get the user activity logs list by its unique ID.
      ///
-     Future getLogs({required String userId}) async {
+     Future<models.LogList> getLogs({required String userId, int? limit, int? offset}) async {
         final String path = '/users/{userId}/logs'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
+            'limit': limit,
+            'offset': offset,
         };
 
         final Map<String, String> headers = {
@@ -120,14 +122,14 @@ class Users extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.LogList.fromMap(res.data);
     }
 
      /// Update Name
      ///
      /// Update the user name by its unique ID.
      ///
-     Future updateName({required String userId, required String name}) async {
+     Future<models.User> updateName({required String userId, required String name}) async {
         final String path = '/users/{userId}/name'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -139,14 +141,14 @@ class Users extends Service {
         };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.User.fromMap(res.data);
     }
 
      /// Update Password
      ///
      /// Update the user password by its unique ID.
      ///
-     Future updatePassword({required String userId, required String password}) async {
+     Future<models.User> updatePassword({required String userId, required String password}) async {
         final String path = '/users/{userId}/password'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -158,14 +160,14 @@ class Users extends Service {
         };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.User.fromMap(res.data);
     }
 
      /// Get User Preferences
      ///
      /// Get the user preferences by its unique ID.
      ///
-     Future getPrefs({required String userId}) async {
+     Future<models.Preferences> getPrefs({required String userId}) async {
         final String path = '/users/{userId}/prefs'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -176,7 +178,7 @@ class Users extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Preferences.fromMap(res.data);
     }
 
      /// Update User Preferences
@@ -184,7 +186,7 @@ class Users extends Service {
      /// Update the user preferences by its unique ID. You can pass only the
      /// specific settings you wish to update.
      ///
-     Future updatePrefs({required String userId, required Map prefs}) async {
+     Future<models.Preferences> updatePrefs({required String userId, required Map prefs}) async {
         final String path = '/users/{userId}/prefs'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -196,14 +198,14 @@ class Users extends Service {
         };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Preferences.fromMap(res.data);
     }
 
      /// Get User Sessions
      ///
      /// Get the user sessions list by its unique ID.
      ///
-     Future getSessions({required String userId}) async {
+     Future<models.SessionList> getSessions({required String userId}) async {
         final String path = '/users/{userId}/sessions'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -214,7 +216,7 @@ class Users extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.SessionList.fromMap(res.data);
     }
 
      /// Delete User Sessions
@@ -257,7 +259,7 @@ class Users extends Service {
      ///
      /// Update the user status by its unique ID.
      ///
-     Future updateStatus({required String userId, required bool status}) async {
+     Future<models.User> updateStatus({required String userId, required bool status}) async {
         final String path = '/users/{userId}/status'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -269,14 +271,14 @@ class Users extends Service {
         };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.User.fromMap(res.data);
     }
 
      /// Update Email Verification
      ///
      /// Update the user email verification status by its unique ID.
      ///
-     Future updateVerification({required String userId, required bool emailVerification}) async {
+     Future<models.User> updateVerification({required String userId, required bool emailVerification}) async {
         final String path = '/users/{userId}/verification'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
@@ -288,6 +290,6 @@ class Users extends Service {
         };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.User.fromMap(res.data);
     }
 }

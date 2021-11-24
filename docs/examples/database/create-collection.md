@@ -14,8 +14,8 @@ void main() { // Init SDK
     collectionId: '',
     name: '[NAME]',
     permission: 'document',
-    read: '',
-    write: '',
+    read: ["role:all"],
+    write: ["role:all"],
   );
 
   result

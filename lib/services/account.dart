@@ -7,7 +7,7 @@ class Account extends Service {
      ///
      /// Get currently logged in user data as JSON object.
      ///
-     Future get() async {
+     Future<models.User> get() async {
         final String path = '/account';
 
         final Map<String, dynamic> params = {
@@ -18,7 +18,7 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.User.fromMap(res.data);
     }
 
      /// Delete Account
@@ -52,7 +52,7 @@ class Account extends Service {
      /// This endpoint can also be used to convert an anonymous account to a normal
      /// one, by passing an email address and a new password.
      ///
-     Future updateEmail({required String email, required String password}) async {
+     Future<models.User> updateEmail({required String email, required String password}) async {
         final String path = '/account/email';
 
         final Map<String, dynamic> params = {
@@ -65,7 +65,7 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.User.fromMap(res.data);
     }
 
      /// Get Account Logs
@@ -73,10 +73,12 @@ class Account extends Service {
      /// Get currently logged in user list of latest security activity logs. Each
      /// log returns user IP address, location and date and time of log.
      ///
-     Future getLogs() async {
+     Future<models.LogList> getLogs({int? limit, int? offset}) async {
         final String path = '/account/logs';
 
         final Map<String, dynamic> params = {
+            'limit': limit,
+            'offset': offset,
         };
 
         final Map<String, String> headers = {
@@ -84,14 +86,14 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.LogList.fromMap(res.data);
     }
 
      /// Update Account Name
      ///
      /// Update currently logged in user account name.
      ///
-     Future updateName({required String name}) async {
+     Future<models.User> updateName({required String name}) async {
         final String path = '/account/name';
 
         final Map<String, dynamic> params = {
@@ -103,7 +105,7 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.User.fromMap(res.data);
     }
 
      /// Update Account Password
@@ -112,7 +114,7 @@ class Account extends Service {
      /// to pass in the new password, and the old password. For users created with
      /// OAuth and Team Invites, oldPassword is optional.
      ///
-     Future updatePassword({required String password, String? oldPassword}) async {
+     Future<models.User> updatePassword({required String password, String? oldPassword}) async {
         final String path = '/account/password';
 
         final Map<String, dynamic> params = {
@@ -125,14 +127,14 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.User.fromMap(res.data);
     }
 
      /// Get Account Preferences
      ///
      /// Get currently logged in user preferences as a key-value object.
      ///
-     Future getPrefs() async {
+     Future<models.Preferences> getPrefs() async {
         final String path = '/account/prefs';
 
         final Map<String, dynamic> params = {
@@ -143,7 +145,7 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Preferences.fromMap(res.data);
     }
 
      /// Update Account Preferences
@@ -151,7 +153,7 @@ class Account extends Service {
      /// Update currently logged in user account preferences. You can pass only the
      /// specific settings you wish to update.
      ///
-     Future updatePrefs({required Map prefs}) async {
+     Future<models.User> updatePrefs({required Map prefs}) async {
         final String path = '/account/prefs';
 
         final Map<String, dynamic> params = {
@@ -163,7 +165,7 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.User.fromMap(res.data);
     }
 
      /// Create Password Recovery
@@ -177,7 +179,7 @@ class Account extends Service {
      /// complete the process. The verification link sent to the user's email
      /// address is valid for 1 hour.
      ///
-     Future createRecovery({required String email, required String url}) async {
+     Future<models.Token> createRecovery({required String email, required String url}) async {
         final String path = '/account/recovery';
 
         final Map<String, dynamic> params = {
@@ -190,7 +192,7 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Token.fromMap(res.data);
     }
 
      /// Create Password Recovery (confirmation)
@@ -205,7 +207,7 @@ class Account extends Service {
      /// the only valid redirect URLs are the ones from domains you have set when
      /// adding your platforms in the console interface.
      ///
-     Future updateRecovery({required String userId, required String secret, required String password, required String passwordAgain}) async {
+     Future<models.Token> updateRecovery({required String userId, required String secret, required String password, required String passwordAgain}) async {
         final String path = '/account/recovery';
 
         final Map<String, dynamic> params = {
@@ -220,7 +222,7 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Token.fromMap(res.data);
     }
 
      /// Get Account Sessions
@@ -228,7 +230,7 @@ class Account extends Service {
      /// Get currently logged in user list of active sessions across different
      /// devices.
      ///
-     Future getSessions() async {
+     Future<models.SessionList> getSessions() async {
         final String path = '/account/sessions';
 
         final Map<String, dynamic> params = {
@@ -239,7 +241,7 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.SessionList.fromMap(res.data);
     }
 
      /// Delete All Account Sessions
@@ -266,7 +268,7 @@ class Account extends Service {
      /// Use this endpoint to get a logged in user's session using a Session ID.
      /// Inputting 'current' will return the current session being used.
      ///
-     Future getSession({required String sessionId}) async {
+     Future<models.Session> getSession({required String sessionId}) async {
         final String path = '/account/sessions/{sessionId}'.replaceAll(RegExp('{sessionId}'), sessionId);
 
         final Map<String, dynamic> params = {
@@ -277,7 +279,7 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Session.fromMap(res.data);
     }
 
      /// Delete Account Session
@@ -318,7 +320,7 @@ class Account extends Service {
      /// adding your platforms in the console interface.
      /// 
      ///
-     Future createVerification({required String url}) async {
+     Future<models.Token> createVerification({required String url}) async {
         final String path = '/account/verification';
 
         final Map<String, dynamic> params = {
@@ -330,7 +332,7 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Token.fromMap(res.data);
     }
 
      /// Create Email Verification (confirmation)
@@ -340,7 +342,7 @@ class Account extends Service {
      /// to verify the user email ownership. If confirmed this route will return a
      /// 200 status code.
      ///
-     Future updateVerification({required String userId, required String secret}) async {
+     Future<models.Token> updateVerification({required String userId, required String secret}) async {
         final String path = '/account/verification';
 
         final Map<String, dynamic> params = {
@@ -353,6 +355,6 @@ class Account extends Service {
         };
 
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Token.fromMap(res.data);
     }
 }

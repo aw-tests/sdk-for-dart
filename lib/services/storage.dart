@@ -9,7 +9,7 @@ class Storage extends Service {
      /// your results. On admin mode, this endpoint will return a list of all of the
      /// project's files. [Learn more about different API modes](/docs/admin).
      ///
-     Future listFiles({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+     Future<models.FileList> listFiles({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
         final String path = '/storage/files';
 
         final Map<String, dynamic> params = {
@@ -26,7 +26,7 @@ class Storage extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.FileList.fromMap(res.data);
     }
 
      /// Create File
@@ -35,7 +35,7 @@ class Storage extends Service {
      /// assigned to read and write access unless he has passed custom values for
      /// read and write arguments.
      ///
-     Future createFile({required String fileId, required http.MultipartFile file, List? read, List? write}) async {
+     Future<models.File> createFile({required String fileId, required http.MultipartFile file, List? read, List? write}) async {
         final String path = '/storage/files';
 
         final Map<String, dynamic> params = {
@@ -50,7 +50,7 @@ class Storage extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.File.fromMap(res.data);
     }
 
      /// Get File
@@ -58,7 +58,7 @@ class Storage extends Service {
      /// Get a file by its unique ID. This endpoint response returns a JSON object
      /// with the file metadata.
      ///
-     Future getFile({required String fileId}) async {
+     Future<models.File> getFile({required String fileId}) async {
         final String path = '/storage/files/{fileId}'.replaceAll(RegExp('{fileId}'), fileId);
 
         final Map<String, dynamic> params = {
@@ -69,7 +69,7 @@ class Storage extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.File.fromMap(res.data);
     }
 
      /// Update File
@@ -77,7 +77,7 @@ class Storage extends Service {
      /// Update a file by its unique ID. Only users with write permissions have
      /// access to update this resource.
      ///
-     Future updateFile({required String fileId, required List read, required List write}) async {
+     Future<models.File> updateFile({required String fileId, required List read, required List write}) async {
         final String path = '/storage/files/{fileId}'.replaceAll(RegExp('{fileId}'), fileId);
 
         final Map<String, dynamic> params = {
@@ -90,7 +90,7 @@ class Storage extends Service {
         };
 
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.File.fromMap(res.data);
     }
 
      /// Delete File

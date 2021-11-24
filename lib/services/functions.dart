@@ -8,7 +8,7 @@ class Functions extends Service {
      /// Get a list of all the project's functions. You can use the query params to
      /// filter your results.
      ///
-     Future list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+     Future<models.FunctionList> list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
@@ -25,7 +25,7 @@ class Functions extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.FunctionList.fromMap(res.data);
     }
 
      /// Create Function
@@ -34,7 +34,7 @@ class Functions extends Service {
      /// [permissions](/docs/permissions) to allow different project users or team
      /// with access to execute the function using the client API.
      ///
-     Future create({required String functionId, required String name, required List execute, required String runtime, Map? vars, List? events, String? schedule, int? timeout}) async {
+     Future<models.XFunction> create({required String functionId, required String name, required List execute, required String runtime, Map? vars, List? events, String? schedule, int? timeout}) async {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
@@ -53,14 +53,14 @@ class Functions extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.XFunction.fromMap(res.data);
     }
 
      /// Get Function
      ///
      /// Get a function by its unique ID.
      ///
-     Future get({required String functionId}) async {
+     Future<models.XFunction> get({required String functionId}) async {
         final String path = '/functions/{functionId}'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -71,14 +71,14 @@ class Functions extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.XFunction.fromMap(res.data);
     }
 
      /// Update Function
      ///
      /// Update function by its unique ID.
      ///
-     Future update({required String functionId, required String name, required List execute, Map? vars, List? events, String? schedule, int? timeout}) async {
+     Future<models.XFunction> update({required String functionId, required String name, required List execute, Map? vars, List? events, String? schedule, int? timeout}) async {
         final String path = '/functions/{functionId}'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -95,7 +95,7 @@ class Functions extends Service {
         };
 
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.XFunction.fromMap(res.data);
     }
 
      /// Delete Function
@@ -123,7 +123,7 @@ class Functions extends Service {
      /// return a list of all of the project's executions. [Learn more about
      /// different API modes](/docs/admin).
      ///
-     Future listExecutions({required String functionId, int? limit, int? offset, String? search, String? cursor, String? cursorDirection}) async {
+     Future<models.ExecutionList> listExecutions({required String functionId, int? limit, int? offset, String? search, String? cursor, String? cursorDirection}) async {
         final String path = '/functions/{functionId}/executions'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -139,7 +139,7 @@ class Functions extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.ExecutionList.fromMap(res.data);
     }
 
      /// Create Execution
@@ -149,7 +149,7 @@ class Functions extends Service {
      /// updates on the current execution status. Once this endpoint is called, your
      /// function execution process will start asynchronously.
      ///
-     Future createExecution({required String functionId, String? data}) async {
+     Future<models.Execution> createExecution({required String functionId, String? data}) async {
         final String path = '/functions/{functionId}/executions'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -161,14 +161,14 @@ class Functions extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Execution.fromMap(res.data);
     }
 
      /// Get Execution
      ///
      /// Get a function execution log by its unique ID.
      ///
-     Future getExecution({required String functionId, required String executionId}) async {
+     Future<models.Execution> getExecution({required String functionId, required String executionId}) async {
         final String path = '/functions/{functionId}/executions/{executionId}'.replaceAll(RegExp('{functionId}'), functionId).replaceAll(RegExp('{executionId}'), executionId);
 
         final Map<String, dynamic> params = {
@@ -179,7 +179,7 @@ class Functions extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Execution.fromMap(res.data);
     }
 
      /// Update Function Tag
@@ -188,7 +188,7 @@ class Functions extends Service {
      /// endpoint to switch the code tag that should be executed by the execution
      /// endpoint.
      ///
-     Future updateTag({required String functionId, required String tag}) async {
+     Future<models.XFunction> updateTag({required String functionId, required String tag}) async {
         final String path = '/functions/{functionId}/tag'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -200,7 +200,7 @@ class Functions extends Service {
         };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.XFunction.fromMap(res.data);
     }
 
      /// List Tags
@@ -208,7 +208,7 @@ class Functions extends Service {
      /// Get a list of all the project's code tags. You can use the query params to
      /// filter your results.
      ///
-     Future listTags({required String functionId, String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+     Future<models.TagList> listTags({required String functionId, String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
         final String path = '/functions/{functionId}/tags'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -225,7 +225,7 @@ class Functions extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.TagList.fromMap(res.data);
     }
 
      /// Create Tag
@@ -241,7 +241,7 @@ class Functions extends Service {
      /// 
      /// Use the "command" param to set the entry point used to execute your code.
      ///
-     Future createTag({required String functionId, required String command, required http.MultipartFile code}) async {
+     Future<models.Tag> createTag({required String functionId, required String command, required http.MultipartFile code}) async {
         final String path = '/functions/{functionId}/tags'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -254,14 +254,14 @@ class Functions extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Tag.fromMap(res.data);
     }
 
      /// Get Tag
      ///
      /// Get a code tag by its unique ID.
      ///
-     Future getTag({required String functionId, required String tagId}) async {
+     Future<models.Tag> getTag({required String functionId, required String tagId}) async {
         final String path = '/functions/{functionId}/tags/{tagId}'.replaceAll(RegExp('{functionId}'), functionId).replaceAll(RegExp('{tagId}'), tagId);
 
         final Map<String, dynamic> params = {
@@ -272,7 +272,7 @@ class Functions extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Tag.fromMap(res.data);
     }
 
      /// Delete Tag

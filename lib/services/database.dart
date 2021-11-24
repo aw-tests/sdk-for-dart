@@ -10,7 +10,7 @@ class Database extends Service {
      /// of the project's collections. [Learn more about different API
      /// modes](/docs/admin).
      ///
-     Future listCollections({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+     Future<models.CollectionList> listCollections({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
         final String path = '/database/collections';
 
         final Map<String, dynamic> params = {
@@ -27,14 +27,14 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.CollectionList.fromMap(res.data);
     }
 
      /// Create Collection
      ///
      /// Create a new Collection.
      ///
-     Future createCollection({required String collectionId, required String name, required String permission, required String read, required String write}) async {
+     Future<models.Collection> createCollection({required String collectionId, required String name, required String permission, required List read, required List write}) async {
         final String path = '/database/collections';
 
         final Map<String, dynamic> params = {
@@ -50,7 +50,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Collection.fromMap(res.data);
     }
 
      /// Get Collection
@@ -58,7 +58,7 @@ class Database extends Service {
      /// Get a collection by its unique ID. This endpoint response returns a JSON
      /// object with the collection metadata.
      ///
-     Future getCollection({required String collectionId}) async {
+     Future<models.Collection> getCollection({required String collectionId}) async {
         final String path = '/database/collections/{collectionId}'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -69,14 +69,14 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Collection.fromMap(res.data);
     }
 
      /// Update Collection
      ///
      /// Update a collection by its unique ID.
      ///
-     Future updateCollection({required String collectionId, required String name, required String permission, String? read, String? write}) async {
+     Future<models.Collection> updateCollection({required String collectionId, required String name, required String permission, List? read, List? write}) async {
         final String path = '/database/collections/{collectionId}'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -91,7 +91,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Collection.fromMap(res.data);
     }
 
      /// Delete Collection
@@ -114,7 +114,7 @@ class Database extends Service {
     }
 
      /// List Attributes
-     Future listAttributes({required String collectionId}) async {
+     Future<models.AttributeList> listAttributes({required String collectionId}) async {
         final String path = '/database/collections/{collectionId}/attributes'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -125,7 +125,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.AttributeList.fromMap(res.data);
     }
 
      /// Create Boolean Attribute
@@ -133,7 +133,7 @@ class Database extends Service {
      /// Create a boolean attribute.
      /// 
      ///
-     Future createBooleanAttribute({required String collectionId, required String attributeId, required bool xrequired, bool? xdefault, bool? array}) async {
+     Future<models.AttributeBoolean> createBooleanAttribute({required String collectionId, required String attributeId, required bool xrequired, bool? xdefault, bool? array}) async {
         final String path = '/database/collections/{collectionId}/attributes/boolean'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -148,7 +148,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.AttributeBoolean.fromMap(res.data);
     }
 
      /// Create Email Attribute
@@ -156,7 +156,7 @@ class Database extends Service {
      /// Create an email attribute.
      /// 
      ///
-     Future createEmailAttribute({required String collectionId, required String attributeId, required bool xrequired, String? xdefault, bool? array}) async {
+     Future<models.AttributeEmail> createEmailAttribute({required String collectionId, required String attributeId, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/database/collections/{collectionId}/attributes/email'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -171,11 +171,11 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.AttributeEmail.fromMap(res.data);
     }
 
      /// Create Enum Attribute
-     Future createEnumAttribute({required String collectionId, required String attributeId, required List elements, required bool xrequired, String? xdefault, bool? array}) async {
+     Future<models.AttributeEnum> createEnumAttribute({required String collectionId, required String attributeId, required List elements, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/database/collections/{collectionId}/attributes/enum'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -191,7 +191,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.AttributeEnum.fromMap(res.data);
     }
 
      /// Create Float Attribute
@@ -200,7 +200,7 @@ class Database extends Service {
      /// provided.
      /// 
      ///
-     Future createFloatAttribute({required String collectionId, required String attributeId, required bool xrequired, String? min, String? max, String? xdefault, bool? array}) async {
+     Future<models.AttributeFloat> createFloatAttribute({required String collectionId, required String attributeId, required bool xrequired, String? min, String? max, String? xdefault, bool? array}) async {
         final String path = '/database/collections/{collectionId}/attributes/float'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -217,7 +217,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.AttributeFloat.fromMap(res.data);
     }
 
      /// Create Integer Attribute
@@ -226,7 +226,7 @@ class Database extends Service {
      /// provided.
      /// 
      ///
-     Future createIntegerAttribute({required String collectionId, required String attributeId, required bool xrequired, int? min, int? max, int? xdefault, bool? array}) async {
+     Future<models.AttributeInteger> createIntegerAttribute({required String collectionId, required String attributeId, required bool xrequired, int? min, int? max, int? xdefault, bool? array}) async {
         final String path = '/database/collections/{collectionId}/attributes/integer'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -243,7 +243,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.AttributeInteger.fromMap(res.data);
     }
 
      /// Create IP Address Attribute
@@ -251,7 +251,7 @@ class Database extends Service {
      /// Create IP address attribute.
      /// 
      ///
-     Future createIpAttribute({required String collectionId, required String attributeId, required bool xrequired, String? xdefault, bool? array}) async {
+     Future<models.AttributeIp> createIpAttribute({required String collectionId, required String attributeId, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/database/collections/{collectionId}/attributes/ip'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -266,7 +266,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.AttributeIp.fromMap(res.data);
     }
 
      /// Create String Attribute
@@ -274,7 +274,7 @@ class Database extends Service {
      /// Create a new string attribute.
      /// 
      ///
-     Future createStringAttribute({required String collectionId, required String attributeId, required int size, required bool xrequired, String? xdefault, bool? array}) async {
+     Future<models.AttributeString> createStringAttribute({required String collectionId, required String attributeId, required int size, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/database/collections/{collectionId}/attributes/string'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -290,7 +290,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.AttributeString.fromMap(res.data);
     }
 
      /// Create URL Attribute
@@ -298,7 +298,7 @@ class Database extends Service {
      /// Create a URL attribute.
      /// 
      ///
-     Future createUrlAttribute({required String collectionId, required String attributeId, required bool xrequired, String? xdefault, bool? array}) async {
+     Future<models.AttributeUrl> createUrlAttribute({required String collectionId, required String attributeId, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/database/collections/{collectionId}/attributes/url'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -313,7 +313,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.AttributeUrl.fromMap(res.data);
     }
 
      /// Get Attribute
@@ -353,7 +353,7 @@ class Database extends Service {
      /// of the project's documents. [Learn more about different API
      /// modes](/docs/admin).
      ///
-     Future listDocuments({required String collectionId, List? queries, int? limit, int? offset, String? cursor, String? cursorDirection, List? orderAttributes, List? orderTypes}) async {
+     Future<models.DocumentList> listDocuments({required String collectionId, List? queries, int? limit, int? offset, String? cursor, String? cursorDirection, List? orderAttributes, List? orderTypes}) async {
         final String path = '/database/collections/{collectionId}/documents'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -371,7 +371,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.DocumentList.fromMap(res.data);
     }
 
      /// Create Document
@@ -381,7 +381,7 @@ class Database extends Service {
      /// integration](/docs/server/database#databaseCreateCollection) API or
      /// directly from your database console.
      ///
-     Future createDocument({required String collectionId, required String documentId, required Map data, String? read, String? write}) async {
+     Future<models.Document> createDocument({required String collectionId, required String documentId, required Map data, List? read, List? write}) async {
         final String path = '/database/collections/{collectionId}/documents'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -396,7 +396,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Document.fromMap(res.data);
     }
 
      /// Get Document
@@ -404,7 +404,7 @@ class Database extends Service {
      /// Get a document by its unique ID. This endpoint response returns a JSON
      /// object with the document data.
      ///
-     Future getDocument({required String collectionId, required String documentId}) async {
+     Future<models.Document> getDocument({required String collectionId, required String documentId}) async {
         final String path = '/database/collections/{collectionId}/documents/{documentId}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{documentId}'), documentId);
 
         final Map<String, dynamic> params = {
@@ -415,7 +415,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Document.fromMap(res.data);
     }
 
      /// Update Document
@@ -423,7 +423,7 @@ class Database extends Service {
      /// Update a document by its unique ID. Using the patch method you can pass
      /// only specific fields that will get updated.
      ///
-     Future updateDocument({required String collectionId, required String documentId, required Map data, String? read, String? write}) async {
+     Future<models.Document> updateDocument({required String collectionId, required String documentId, required Map data, List? read, List? write}) async {
         final String path = '/database/collections/{collectionId}/documents/{documentId}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{documentId}'), documentId);
 
         final Map<String, dynamic> params = {
@@ -437,7 +437,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Document.fromMap(res.data);
     }
 
      /// Delete Document
@@ -461,7 +461,7 @@ class Database extends Service {
     }
 
      /// List Indexes
-     Future listIndexes({required String collectionId}) async {
+     Future<models.IndexList> listIndexes({required String collectionId}) async {
         final String path = '/database/collections/{collectionId}/indexes'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -472,11 +472,11 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.IndexList.fromMap(res.data);
     }
 
      /// Create Index
-     Future createIndex({required String collectionId, required String indexId, required String type, required List attributes, List? orders}) async {
+     Future<models.Index> createIndex({required String collectionId, required String indexId, required String type, required List attributes, List? orders}) async {
         final String path = '/database/collections/{collectionId}/indexes'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -491,11 +491,11 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Index.fromMap(res.data);
     }
 
      /// Get Index
-     Future getIndex({required String collectionId, required String indexId}) async {
+     Future<models.Index> getIndex({required String collectionId, required String indexId}) async {
         final String path = '/database/collections/{collectionId}/indexes/{indexId}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{indexId}'), indexId);
 
         final Map<String, dynamic> params = {
@@ -506,7 +506,7 @@ class Database extends Service {
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        return models.Index.fromMap(res.data);
     }
 
      /// Delete Index
