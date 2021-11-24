@@ -1,6 +1,5 @@
 part of dart_appwrite;
 
-
 class Account extends Service {
     Account(Client client): super(client);
 
@@ -8,7 +7,7 @@ class Account extends Service {
      ///
      /// Get currently logged in user data as JSON object.
      ///
-    Future<Response> get() {
+     Future get() async {
         final String path = '/account';
 
         final Map<String, dynamic> params = {
@@ -18,7 +17,8 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Delete Account
@@ -29,7 +29,7 @@ class Account extends Service {
      /// address. Any user-related resources like documents or storage files should
      /// be deleted separately.
      ///
-    Future<Response> delete() {
+     Future delete() async {
         final String path = '/account';
 
         final Map<String, dynamic> params = {
@@ -39,7 +39,8 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Update Account Email
@@ -51,7 +52,7 @@ class Account extends Service {
      /// This endpoint can also be used to convert an anonymous account to a normal
      /// one, by passing an email address and a new password.
      ///
-    Future<Response> updateEmail({required String email, required String password}) {
+     Future updateEmail({required String email, required String password}) async {
         final String path = '/account/email';
 
         final Map<String, dynamic> params = {
@@ -63,7 +64,8 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Get Account Logs
@@ -71,7 +73,7 @@ class Account extends Service {
      /// Get currently logged in user list of latest security activity logs. Each
      /// log returns user IP address, location and date and time of log.
      ///
-    Future<Response> getLogs() {
+     Future getLogs() async {
         final String path = '/account/logs';
 
         final Map<String, dynamic> params = {
@@ -81,14 +83,15 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Update Account Name
      ///
      /// Update currently logged in user account name.
      ///
-    Future<Response> updateName({required String name}) {
+     Future updateName({required String name}) async {
         final String path = '/account/name';
 
         final Map<String, dynamic> params = {
@@ -99,7 +102,8 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Update Account Password
@@ -108,7 +112,7 @@ class Account extends Service {
      /// to pass in the new password, and the old password. For users created with
      /// OAuth and Team Invites, oldPassword is optional.
      ///
-    Future<Response> updatePassword({required String password, String oldPassword = ''}) {
+     Future updatePassword({required String password, String? oldPassword}) async {
         final String path = '/account/password';
 
         final Map<String, dynamic> params = {
@@ -120,14 +124,15 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Get Account Preferences
      ///
      /// Get currently logged in user preferences as a key-value object.
      ///
-    Future<Response> getPrefs() {
+     Future getPrefs() async {
         final String path = '/account/prefs';
 
         final Map<String, dynamic> params = {
@@ -137,7 +142,8 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Update Account Preferences
@@ -145,7 +151,7 @@ class Account extends Service {
      /// Update currently logged in user account preferences. You can pass only the
      /// specific settings you wish to update.
      ///
-    Future<Response> updatePrefs({required Map prefs}) {
+     Future updatePrefs({required Map prefs}) async {
         final String path = '/account/prefs';
 
         final Map<String, dynamic> params = {
@@ -156,7 +162,8 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Create Password Recovery
@@ -170,7 +177,7 @@ class Account extends Service {
      /// complete the process. The verification link sent to the user's email
      /// address is valid for 1 hour.
      ///
-    Future<Response> createRecovery({required String email, required String url}) {
+     Future createRecovery({required String email, required String url}) async {
         final String path = '/account/recovery';
 
         final Map<String, dynamic> params = {
@@ -182,10 +189,11 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.post, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
-     /// Complete Password Recovery
+     /// Create Password Recovery (confirmation)
      ///
      /// Use this endpoint to complete the user account password reset. Both the
      /// **userId** and **secret** arguments will be passed as query parameters to
@@ -197,7 +205,7 @@ class Account extends Service {
      /// the only valid redirect URLs are the ones from domains you have set when
      /// adding your platforms in the console interface.
      ///
-    Future<Response> updateRecovery({required String userId, required String secret, required String password, required String passwordAgain}) {
+     Future updateRecovery({required String userId, required String secret, required String password, required String passwordAgain}) async {
         final String path = '/account/recovery';
 
         final Map<String, dynamic> params = {
@@ -211,7 +219,8 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.put, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Get Account Sessions
@@ -219,7 +228,7 @@ class Account extends Service {
      /// Get currently logged in user list of active sessions across different
      /// devices.
      ///
-    Future<Response> getSessions() {
+     Future getSessions() async {
         final String path = '/account/sessions';
 
         final Map<String, dynamic> params = {
@@ -229,7 +238,8 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Delete All Account Sessions
@@ -237,7 +247,7 @@ class Account extends Service {
      /// Delete all sessions from the user account and remove any sessions cookies
      /// from the end client.
      ///
-    Future<Response> deleteSessions() {
+     Future deleteSessions() async {
         final String path = '/account/sessions';
 
         final Map<String, dynamic> params = {
@@ -247,16 +257,16 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
-     /// Delete Account Session
+     /// Get Session By ID
      ///
-     /// Use this endpoint to log out the currently logged in user from all their
-     /// account sessions across all of their different devices. When using the
-     /// option id argument, only the session unique ID provider will be deleted.
+     /// Use this endpoint to get a logged in user's session using a Session ID.
+     /// Inputting 'current' will return the current session being used.
      ///
-    Future<Response> deleteSession({required String sessionId}) {
+     Future getSession({required String sessionId}) async {
         final String path = '/account/sessions/{sessionId}'.replaceAll(RegExp('{sessionId}'), sessionId);
 
         final Map<String, dynamic> params = {
@@ -266,7 +276,28 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
+    }
+
+     /// Delete Account Session
+     ///
+     /// Use this endpoint to log out the currently logged in user from all their
+     /// account sessions across all of their different devices. When using the
+     /// option id argument, only the session unique ID provider will be deleted.
+     ///
+     Future deleteSession({required String sessionId}) async {
+        final String path = '/account/sessions/{sessionId}'.replaceAll(RegExp('{sessionId}'), sessionId);
+
+        final Map<String, dynamic> params = {
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+        final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Create Email Verification
@@ -287,7 +318,7 @@ class Account extends Service {
      /// adding your platforms in the console interface.
      /// 
      ///
-    Future<Response> createVerification({required String url}) {
+     Future createVerification({required String url}) async {
         final String path = '/account/verification';
 
         final Map<String, dynamic> params = {
@@ -298,17 +329,18 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.post, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
-     /// Complete Email Verification
+     /// Create Email Verification (confirmation)
      ///
      /// Use this endpoint to complete the user email verification process. Use both
      /// the **userId** and **secret** parameters that were attached to your app URL
      /// to verify the user email ownership. If confirmed this route will return a
      /// 200 status code.
      ///
-    Future<Response> updateVerification({required String userId, required String secret}) {
+     Future updateVerification({required String userId, required String secret}) async {
         final String path = '/account/verification';
 
         final Map<String, dynamic> params = {
@@ -320,6 +352,7 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.put, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+        return  res.data;
     }
 }

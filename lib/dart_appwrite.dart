@@ -1,17 +1,19 @@
 library dart_appwrite;
 
-import 'dart:io';
-import 'dart:convert';
-import 'package:dio/dio.dart';
-import 'package:dio/adapter.dart';
+import 'dart:async';
+import 'dart:typed_data';
+import 'package:http/http.dart' as http;
+import 'src/enums.dart';
+import 'src/client.dart';
+import 'src/service.dart';
+import 'models.dart' as models;
 
+export 'src/response.dart';
+export 'src/client.dart';
+export 'src/exception.dart';
+export 'package:http/http.dart' show MultipartFile;
 
-export 'package:dio/dio.dart' show Response, MultipartFile;
-
-part 'client.dart';
-part 'enums.dart';
-part 'service.dart';
-part 'exception.dart';
+part 'query.dart';
 part 'services/account.dart';
 part 'services/avatars.dart';
 part 'services/database.dart';

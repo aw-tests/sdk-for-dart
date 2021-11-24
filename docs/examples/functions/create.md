@@ -11,9 +11,10 @@ void main() { // Init SDK
   ;
 
   Future result = functions.create(
+    functionId: '',
     name: '[NAME]',
     execute: [],
-    env: 'dotnet-3.1',
+    runtime: 'dotnet-5.0',
   );
 
   result

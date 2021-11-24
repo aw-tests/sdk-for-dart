@@ -1,6 +1,5 @@
 part of dart_appwrite;
 
-
 class Health extends Service {
     Health(Client client): super(client);
 
@@ -8,7 +7,7 @@ class Health extends Service {
      ///
      /// Check the Appwrite HTTP server is up and responsive.
      ///
-    Future<Response> get() {
+     Future get() async {
         final String path = '/health';
 
         final Map<String, dynamic> params = {
@@ -18,14 +17,15 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Get Anti virus
      ///
      /// Check the Appwrite Anti Virus server is up and connection is successful.
      ///
-    Future<Response> getAntiVirus() {
+     Future getAntiVirus() async {
         final String path = '/health/anti-virus';
 
         final Map<String, dynamic> params = {
@@ -35,7 +35,8 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Get Cache
@@ -43,7 +44,7 @@ class Health extends Service {
      /// Check the Appwrite in-memory cache server is up and connection is
      /// successful.
      ///
-    Future<Response> getCache() {
+     Future getCache() async {
         final String path = '/health/cache';
 
         final Map<String, dynamic> params = {
@@ -53,14 +54,15 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Get DB
      ///
      /// Check the Appwrite database server is up and connection is successful.
      ///
-    Future<Response> getDB() {
+     Future getDB() async {
         final String path = '/health/db';
 
         final Map<String, dynamic> params = {
@@ -70,16 +72,17 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
-     /// Get Certificate Queue
+     /// Get Certificates Queue
      ///
      /// Get the number of certificates that are waiting to be issued against
      /// [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
      /// server.
      ///
-    Future<Response> getQueueCertificates() {
+     Future getQueueCertificates() async {
         final String path = '/health/queue/certificates';
 
         final Map<String, dynamic> params = {
@@ -89,11 +92,12 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Get Functions Queue
-    Future<Response> getQueueFunctions() {
+     Future getQueueFunctions() async {
         final String path = '/health/queue/functions';
 
         final Map<String, dynamic> params = {
@@ -103,7 +107,8 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Get Logs Queue
@@ -111,7 +116,7 @@ class Health extends Service {
      /// Get the number of logs that are waiting to be processed in the Appwrite
      /// internal queue server.
      ///
-    Future<Response> getQueueLogs() {
+     Future getQueueLogs() async {
         final String path = '/health/queue/logs';
 
         final Map<String, dynamic> params = {
@@ -121,25 +126,8 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
-    }
-
-     /// Get Tasks Queue
-     ///
-     /// Get the number of tasks that are waiting to be processed in the Appwrite
-     /// internal queue server.
-     ///
-    Future<Response> getQueueTasks() {
-        final String path = '/health/queue/tasks';
-
-        final Map<String, dynamic> params = {
-        };
-
-        final Map<String, String> headers = {
-            'content-type': 'application/json',
-        };
-
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Get Usage Queue
@@ -147,7 +135,7 @@ class Health extends Service {
      /// Get the number of usage stats that are waiting to be processed in the
      /// Appwrite internal queue server.
      ///
-    Future<Response> getQueueUsage() {
+     Future getQueueUsage() async {
         final String path = '/health/queue/usage';
 
         final Map<String, dynamic> params = {
@@ -157,7 +145,8 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Get Webhooks Queue
@@ -165,7 +154,7 @@ class Health extends Service {
      /// Get the number of webhooks that are waiting to be processed in the Appwrite
      /// internal queue server.
      ///
-    Future<Response> getQueueWebhooks() {
+     Future getQueueWebhooks() async {
         final String path = '/health/queue/webhooks';
 
         final Map<String, dynamic> params = {
@@ -175,14 +164,15 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Get Local Storage
      ///
      /// Check the Appwrite local storage device is up and connection is successful.
      ///
-    Future<Response> getStorageLocal() {
+     Future getStorageLocal() async {
         final String path = '/health/storage/local';
 
         final Map<String, dynamic> params = {
@@ -192,7 +182,8 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 
      /// Get Time
@@ -205,7 +196,7 @@ class Health extends Service {
      /// clocks over the Internet. If your computer sets its own clock, it likely
      /// uses NTP.
      ///
-    Future<Response> getTime() {
+     Future getTime() async {
         final String path = '/health/time';
 
         final Map<String, dynamic> params = {
@@ -215,6 +206,7 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
     }
 }
