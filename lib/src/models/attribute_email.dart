@@ -29,12 +29,12 @@ this.xdefault,
 
     factory AttributeEmail.fromMap(Map<String, dynamic> map) {
         return AttributeEmail(
-            key: map['key']?.toString(),
-            type: map['type']?.toString(),
-            status: map['status']?.toString(),
+            key: map['key'].toString(),
+            type: map['type'].toString(),
+            status: map['status'].toString(),
             xrequired: map['required'],
             array: map['array'],
-            format: map['format']?.toString(),
+            format: map['format'].toString(),
             xdefault: map['default']?.toString(),
         );
     }

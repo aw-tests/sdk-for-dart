@@ -32,9 +32,9 @@ this.xdefault,
 
     factory AttributeInteger.fromMap(Map<String, dynamic> map) {
         return AttributeInteger(
-            key: map['key']?.toString(),
-            type: map['type']?.toString(),
-            status: map['status']?.toString(),
+            key: map['key'].toString(),
+            type: map['type'].toString(),
+            status: map['status'].toString(),
             xrequired: map['required'],
             array: map['array'],
             min: map['min'],

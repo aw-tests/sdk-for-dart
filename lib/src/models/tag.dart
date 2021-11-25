@@ -23,11 +23,11 @@ class Tag {
 
     factory Tag.fromMap(Map<String, dynamic> map) {
         return Tag(
-            $id: map['\$id']?.toString(),
-            functionId: map['functionId']?.toString(),
+            $id: map['\$id'].toString(),
+            functionId: map['functionId'].toString(),
             dateCreated: map['dateCreated'],
-            command: map['command']?.toString(),
-            size: map['size']?.toString(),
+            command: map['command'].toString(),
+            size: map['size'].toString(),
         );
     }
 

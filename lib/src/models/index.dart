@@ -23,9 +23,9 @@ class Index {
 
     factory Index.fromMap(Map<String, dynamic> map) {
         return Index(
-            key: map['key']?.toString(),
-            type: map['type']?.toString(),
-            status: map['status']?.toString(),
+            key: map['key'].toString(),
+            type: map['type'].toString(),
+            status: map['status'].toString(),
             attributes: map['attributes'],
             orders: map['orders'],
         );

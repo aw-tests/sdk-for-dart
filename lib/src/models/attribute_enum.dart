@@ -32,13 +32,13 @@ this.xdefault,
 
     factory AttributeEnum.fromMap(Map<String, dynamic> map) {
         return AttributeEnum(
-            key: map['key']?.toString(),
-            type: map['type']?.toString(),
-            status: map['status']?.toString(),
+            key: map['key'].toString(),
+            type: map['type'].toString(),
+            status: map['status'].toString(),
             xrequired: map['required'],
             array: map['array'],
             elements: map['elements'],
-            format: map['format']?.toString(),
+            format: map['format'].toString(),
             xdefault: map['default']?.toString(),
         );
     }
