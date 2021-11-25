@@ -11,30 +11,30 @@ class AttributeInteger {
     /// Is attribute required?
     final bool xrequired;
     /// Is attribute an array?
-    final bool array;
+    final bool? array;
     /// Minimum value to enforce for new documents.
-    final int min;
+    final int? min;
     /// Maximum value to enforce for new documents.
-    final int max;
+    final int? max;
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
-    final int xdefault;
+    final int? xdefault;
 
     AttributeInteger({
         required this.key,
         required this.type,
         required this.status,
         required this.xrequired,
-        required this.array,
-        required this.min,
-        required this.max,
-        required this.xdefault,
+this.array,
+this.min,
+this.max,
+this.xdefault,
     });
 
     factory AttributeInteger.fromMap(Map<String, dynamic> map) {
         return AttributeInteger(
-            key: map['key'].toString(),
-            type: map['type'].toString(),
-            status: map['status'].toString(),
+            key: map['key']?.toString(),
+            type: map['type']?.toString(),
+            status: map['status']?.toString(),
             xrequired: map['required'],
             array: map['array'],
             min: map['min'],

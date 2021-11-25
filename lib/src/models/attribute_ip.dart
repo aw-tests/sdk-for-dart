@@ -11,31 +11,31 @@ class AttributeIp {
     /// Is attribute required?
     final bool xrequired;
     /// Is attribute an array?
-    final bool array;
+    final bool? array;
     /// String format.
     final String format;
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
-    final String xdefault;
+    final String? xdefault;
 
     AttributeIp({
         required this.key,
         required this.type,
         required this.status,
         required this.xrequired,
-        required this.array,
+this.array,
         required this.format,
-        required this.xdefault,
+this.xdefault,
     });
 
     factory AttributeIp.fromMap(Map<String, dynamic> map) {
         return AttributeIp(
-            key: map['key'].toString(),
-            type: map['type'].toString(),
-            status: map['status'].toString(),
+            key: map['key']?.toString(),
+            type: map['type']?.toString(),
+            status: map['status']?.toString(),
             xrequired: map['required'],
             array: map['array'],
-            format: map['format'].toString(),
-            xdefault: map['default'].toString(),
+            format: map['format']?.toString(),
+            xdefault: map['default']?.toString(),
         );
     }
 

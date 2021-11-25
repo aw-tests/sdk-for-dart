@@ -29,11 +29,11 @@ class Collection {
 
     factory Collection.fromMap(Map<String, dynamic> map) {
         return Collection(
-            $id: map['\$id'].toString(),
+            $id: map['\$id']?.toString(),
             $read: map['\$read'],
             $write: map['\$write'],
-            name: map['name'].toString(),
-            permission: map['permission'].toString(),
+            name: map['name']?.toString(),
+            permission: map['permission']?.toString(),
             attributes: map['attributes'],
             indexes: List<Index>.from(map['indexes'].map((p) => Index.fromMap(p))),
         );

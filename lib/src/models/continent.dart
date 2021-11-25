@@ -14,8 +14,8 @@ class Continent {
 
     factory Continent.fromMap(Map<String, dynamic> map) {
         return Continent(
-            name: map['name'].toString(),
-            code: map['code'].toString(),
+            name: map['name']?.toString(),
+            code: map['code']?.toString(),
         );
     }
 
