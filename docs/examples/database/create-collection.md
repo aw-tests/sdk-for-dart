@@ -11,11 +11,10 @@ void main() { // Init SDK
   ;
 
   Future result = database.createCollection(
-    collectionId: '',
     name: '[NAME]',
-    permission: 'document',
-    read: ["role:all"],
-    write: ["role:all"],
+    read: [],
+    write: [],
+    rules: [],
   );
 
   result

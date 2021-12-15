@@ -4,15 +4,15 @@ part of dart_appwrite.models;
 class XFunction {
     /// Function ID.
     final String $id;
-    /// Document execute permissions.
-    final List execute;
+    /// Function permissions.
+    final Permissions $permissions;
     /// Function name.
     final String name;
     /// Function creation date in Unix timestamp.
     final int dateCreated;
     /// Function update date in Unix timestamp.
     final int dateUpdated;
-    /// Function status. Possible values: `disabled`, `enabled`
+    /// Function status. Possible values: disabled, enabled
     final String status;
     /// Function execution runtime.
     final String runtime;
@@ -33,7 +33,7 @@ class XFunction {
 
     XFunction({
         required this.$id,
-        required this.execute,
+        required this.$permissions,
         required this.name,
         required this.dateCreated,
         required this.dateUpdated,
@@ -51,7 +51,7 @@ class XFunction {
     factory XFunction.fromMap(Map<String, dynamic> map) {
         return XFunction(
             $id: map['\$id'].toString(),
-            execute: map['execute'],
+            $permissions: Permissions.fromMap(map['\$permissions']),
             name: map['name'].toString(),
             dateCreated: map['dateCreated'],
             dateUpdated: map['dateUpdated'],
@@ -70,7 +70,7 @@ class XFunction {
     Map<String, dynamic> toMap() {
         return {
             "\$id": $id,
-            "execute": execute,
+            "\$permissions": $permissions.toMap(),
             "name": name,
             "dateCreated": dateCreated,
             "dateUpdated": dateUpdated,

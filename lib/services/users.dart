@@ -8,15 +8,13 @@ class Users extends Service {
      /// Get a list of all the project's users. You can use the query params to
      /// filter your results.
      ///
-     Future<models.UserList> list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+     Future<models.UserList> list({String? search, int? limit, int? offset, String? orderType}) async {
         final String path = '/users';
 
         final Map<String, dynamic> params = {
             'search': search,
             'limit': limit,
             'offset': offset,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
             'orderType': orderType,
         };
 
@@ -32,11 +30,10 @@ class Users extends Service {
      ///
      /// Create a new user.
      ///
-     Future<models.User> create({required String userId, required String email, required String password, String? name}) async {
+     Future<models.User> create({required String email, required String password, String? name}) async {
         final String path = '/users';
 
         final Map<String, dynamic> params = {
-            'userId': userId,
             'email': email,
             'password': password,
             'name': name,
@@ -107,14 +104,12 @@ class Users extends Service {
 
      /// Get User Logs
      ///
-     /// Get the user activity logs list by its unique ID.
+     /// Get a user activity logs list by its unique ID.
      ///
-     Future<models.LogList> getLogs({required String userId, int? limit, int? offset}) async {
+     Future<models.LogList> getLogs({required String userId}) async {
         final String path = '/users/{userId}/logs'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
-            'limit': limit,
-            'offset': offset,
         };
 
         final Map<String, String> headers = {
@@ -259,7 +254,7 @@ class Users extends Service {
      ///
      /// Update the user status by its unique ID.
      ///
-     Future<models.User> updateStatus({required String userId, required bool status}) async {
+     Future<models.User> updateStatus({required String userId, required int status}) async {
         final String path = '/users/{userId}/status'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {

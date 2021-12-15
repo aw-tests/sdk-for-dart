@@ -1,7 +1,6 @@
 library dart_appwrite.models;
 
 part 'src/models/collection_list.dart';
-part 'src/models/index_list.dart';
 part 'src/models/document_list.dart';
 part 'src/models/user_list.dart';
 part 'src/models/session_list.dart';
@@ -17,18 +16,10 @@ part 'src/models/continent_list.dart';
 part 'src/models/language_list.dart';
 part 'src/models/currency_list.dart';
 part 'src/models/phone_list.dart';
+part 'src/models/permissions.dart';
 part 'src/models/collection.dart';
-part 'src/models/attribute_list.dart';
-part 'src/models/attribute_string.dart';
-part 'src/models/attribute_integer.dart';
-part 'src/models/attribute_float.dart';
-part 'src/models/attribute_boolean.dart';
-part 'src/models/attribute_email.dart';
-part 'src/models/attribute_enum.dart';
-part 'src/models/attribute_ip.dart';
-part 'src/models/attribute_url.dart';
-part 'src/models/index.dart';
 part 'src/models/document.dart';
+part 'src/models/rule.dart';
 part 'src/models/log.dart';
 part 'src/models/user.dart';
 part 'src/models/preferences.dart';

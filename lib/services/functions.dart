@@ -8,15 +8,13 @@ class Functions extends Service {
      /// Get a list of all the project's functions. You can use the query params to
      /// filter your results.
      ///
-     Future<models.FunctionList> list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+     Future<models.FunctionList> list({String? search, int? limit, int? offset, String? orderType}) async {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
             'search': search,
             'limit': limit,
             'offset': offset,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
             'orderType': orderType,
         };
 
@@ -34,11 +32,10 @@ class Functions extends Service {
      /// [permissions](/docs/permissions) to allow different project users or team
      /// with access to execute the function using the client API.
      ///
-     Future<models.XFunction> create({required String functionId, required String name, required List execute, required String runtime, Map? vars, List? events, String? schedule, int? timeout}) async {
+     Future<models.XFunction> create({required String name, required List execute, required String runtime, Map? vars, List? events, String? schedule, int? timeout}) async {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
-            'functionId': functionId,
             'name': name,
             'execute': execute,
             'runtime': runtime,
@@ -123,15 +120,14 @@ class Functions extends Service {
      /// return a list of all of the project's executions. [Learn more about
      /// different API modes](/docs/admin).
      ///
-     Future<models.ExecutionList> listExecutions({required String functionId, int? limit, int? offset, String? search, String? cursor, String? cursorDirection}) async {
+     Future<models.ExecutionList> listExecutions({required String functionId, String? search, int? limit, int? offset, String? orderType}) async {
         final String path = '/functions/{functionId}/executions'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
+            'search': search,
             'limit': limit,
             'offset': offset,
-            'search': search,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
+            'orderType': orderType,
         };
 
         final Map<String, String> headers = {
@@ -208,15 +204,13 @@ class Functions extends Service {
      /// Get a list of all the project's code tags. You can use the query params to
      /// filter your results.
      ///
-     Future<models.TagList> listTags({required String functionId, String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+     Future<models.TagList> listTags({required String functionId, String? search, int? limit, int? offset, String? orderType}) async {
         final String path = '/functions/{functionId}/tags'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
             'search': search,
             'limit': limit,
             'offset': offset,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
             'orderType': orderType,
         };
 

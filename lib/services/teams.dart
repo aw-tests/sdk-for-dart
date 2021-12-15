@@ -10,15 +10,13 @@ class Teams extends Service {
      /// of the project's teams. [Learn more about different API
      /// modes](/docs/admin).
      ///
-     Future<models.TeamList> list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+     Future<models.TeamList> list({String? search, int? limit, int? offset, String? orderType}) async {
         final String path = '/teams';
 
         final Map<String, dynamic> params = {
             'search': search,
             'limit': limit,
             'offset': offset,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
             'orderType': orderType,
         };
 
@@ -37,11 +35,10 @@ class Teams extends Service {
      /// who will be able add new owners and update or delete the team from your
      /// project.
      ///
-     Future<models.Team> create({required String teamId, required String name, List? roles}) async {
+     Future<models.Team> create({required String name, List? roles}) async {
         final String path = '/teams';
 
         final Map<String, dynamic> params = {
-            'teamId': teamId,
             'name': name,
             'roles': roles,
         };
@@ -117,15 +114,13 @@ class Teams extends Service {
      /// Get a team members by the team unique ID. All team members have read access
      /// for this list of resources.
      ///
-     Future<models.MembershipList> getMemberships({required String teamId, String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+     Future<models.MembershipList> getMemberships({required String teamId, String? search, int? limit, int? offset, String? orderType}) async {
         final String path = '/teams/{teamId}/memberships'.replaceAll(RegExp('{teamId}'), teamId);
 
         final Map<String, dynamic> params = {
             'search': search,
             'limit': limit,
             'offset': offset,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
             'orderType': orderType,
         };
 
@@ -172,25 +167,6 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.Membership.fromMap(res.data);
-    }
-
-     /// Get Team Membership
-     ///
-     /// Get a team member by the membership unique id. All team members have read
-     /// access for this resource.
-     ///
-     Future<models.MembershipList> getMembership({required String teamId, required String membershipId}) async {
-        final String path = '/teams/{teamId}/memberships/{membershipId}'.replaceAll(RegExp('{teamId}'), teamId).replaceAll(RegExp('{membershipId}'), membershipId);
-
-        final Map<String, dynamic> params = {
-        };
-
-        final Map<String, String> headers = {
-            'content-type': 'application/json',
-        };
-
-        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return models.MembershipList.fromMap(res.data);
     }
 
      /// Update Membership Roles

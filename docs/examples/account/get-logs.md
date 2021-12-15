@@ -10,8 +10,7 @@ void main() { // Init SDK
     .setJWT('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...') // Your secret JSON Web Token
   ;
 
-  Future result = account.getLogs(
-  );
+  Future result = account.getLogs();
 
   result
     .then((response) {

@@ -9,15 +9,13 @@ class Storage extends Service {
      /// your results. On admin mode, this endpoint will return a list of all of the
      /// project's files. [Learn more about different API modes](/docs/admin).
      ///
-     Future<models.FileList> listFiles({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+     Future<models.FileList> listFiles({String? search, int? limit, int? offset, String? orderType}) async {
         final String path = '/storage/files';
 
         final Map<String, dynamic> params = {
             'search': search,
             'limit': limit,
             'offset': offset,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
             'orderType': orderType,
         };
 
@@ -35,11 +33,10 @@ class Storage extends Service {
      /// assigned to read and write access unless he has passed custom values for
      /// read and write arguments.
      ///
-     Future<models.File> createFile({required String fileId, required http.MultipartFile file, List? read, List? write}) async {
+     Future<models.File> createFile({required http.MultipartFile file, List? read, List? write}) async {
         final String path = '/storage/files';
 
         final Map<String, dynamic> params = {
-            'fileId': fileId,
             'file': file,
             'read': read,
             'write': write,

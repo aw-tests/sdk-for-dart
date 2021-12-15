@@ -76,7 +76,7 @@ class Health extends Service {
         return  res.data;
     }
 
-     /// Get Certificates Queue
+     /// Get Certificate Queue
      ///
      /// Get the number of certificates that are waiting to be issued against
      /// [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
@@ -118,6 +118,25 @@ class Health extends Service {
      ///
      Future getQueueLogs() async {
         final String path = '/health/queue/logs';
+
+        final Map<String, dynamic> params = {
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return  res.data;
+    }
+
+     /// Get Tasks Queue
+     ///
+     /// Get the number of tasks that are waiting to be processed in the Appwrite
+     /// internal queue server.
+     ///
+     Future getQueueTasks() async {
+        final String path = '/health/queue/tasks';
 
         final Map<String, dynamic> params = {
         };

@@ -4,14 +4,6 @@ part of dart_appwrite.models;
 class Log {
     /// Event name.
     final String event;
-    /// User ID.
-    final String userId;
-    /// User Email.
-    final String userEmail;
-    /// User Name.
-    final String userName;
-    /// API mode when event triggered.
-    final String mode;
     /// IP session in use when the session was created.
     final String ip;
     /// Log creation time in Unix timestamp.
@@ -47,10 +39,6 @@ class Log {
 
     Log({
         required this.event,
-        required this.userId,
-        required this.userEmail,
-        required this.userName,
-        required this.mode,
         required this.ip,
         required this.time,
         required this.osCode,
@@ -72,10 +60,6 @@ class Log {
     factory Log.fromMap(Map<String, dynamic> map) {
         return Log(
             event: map['event'].toString(),
-            userId: map['userId'].toString(),
-            userEmail: map['userEmail'].toString(),
-            userName: map['userName'].toString(),
-            mode: map['mode'].toString(),
             ip: map['ip'].toString(),
             time: map['time'],
             osCode: map['osCode'].toString(),
@@ -98,10 +82,6 @@ class Log {
     Map<String, dynamic> toMap() {
         return {
             "event": event,
-            "userId": userId,
-            "userEmail": userEmail,
-            "userName": userName,
-            "mode": mode,
             "ip": ip,
             "time": time,
             "osCode": osCode,

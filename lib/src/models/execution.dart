@@ -4,8 +4,8 @@ part of dart_appwrite.models;
 class Execution {
     /// Execution ID.
     final String $id;
-    /// Execution read permissions.
-    final List $read;
+    /// Execution permissions.
+    final Permissions $permissions;
     /// Function ID.
     final String functionId;
     /// The execution creation date in Unix timestamp.
@@ -25,7 +25,7 @@ class Execution {
 
     Execution({
         required this.$id,
-        required this.$read,
+        required this.$permissions,
         required this.functionId,
         required this.dateCreated,
         required this.trigger,
@@ -39,7 +39,7 @@ class Execution {
     factory Execution.fromMap(Map<String, dynamic> map) {
         return Execution(
             $id: map['\$id'].toString(),
-            $read: map['\$read'],
+            $permissions: Permissions.fromMap(map['\$permissions']),
             functionId: map['functionId'].toString(),
             dateCreated: map['dateCreated'],
             trigger: map['trigger'].toString(),
@@ -54,7 +54,7 @@ class Execution {
     Map<String, dynamic> toMap() {
         return {
             "\$id": $id,
-            "\$read": $read,
+            "\$permissions": $permissions.toMap(),
             "functionId": functionId,
             "dateCreated": dateCreated,
             "trigger": trigger,

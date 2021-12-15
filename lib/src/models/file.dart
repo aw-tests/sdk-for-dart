@@ -4,10 +4,8 @@ part of dart_appwrite.models;
 class File {
     /// File ID.
     final String $id;
-    /// File read permissions.
-    final List $read;
-    /// File write permissions.
-    final List $write;
+    /// File permissions.
+    final Permissions $permissions;
     /// File name.
     final String name;
     /// File creation date in Unix timestamp.
@@ -21,8 +19,7 @@ class File {
 
     File({
         required this.$id,
-        required this.$read,
-        required this.$write,
+        required this.$permissions,
         required this.name,
         required this.dateCreated,
         required this.signature,
@@ -33,8 +30,7 @@ class File {
     factory File.fromMap(Map<String, dynamic> map) {
         return File(
             $id: map['\$id'].toString(),
-            $read: map['\$read'],
-            $write: map['\$write'],
+            $permissions: Permissions.fromMap(map['\$permissions']),
             name: map['name'].toString(),
             dateCreated: map['dateCreated'],
             signature: map['signature'].toString(),
@@ -46,8 +42,7 @@ class File {
     Map<String, dynamic> toMap() {
         return {
             "\$id": $id,
-            "\$read": $read,
-            "\$write": $write,
+            "\$permissions": $permissions.toMap(),
             "name": name,
             "dateCreated": dateCreated,
             "signature": signature,
