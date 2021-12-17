@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Function
-class XFunction {
+class Func {
     /// Function ID.
     final String $id;
     /// Function permissions.
@@ -31,7 +31,7 @@ class XFunction {
     /// Function execution timeout in seconds.
     final int timeout;
 
-    XFunction({
+    Func({
         required this.$id,
         required this.$permissions,
         required this.name,
@@ -48,8 +48,8 @@ class XFunction {
         required this.timeout,
     });
 
-    factory XFunction.fromMap(Map<String, dynamic> map) {
-        return XFunction(
+    factory Func.fromMap(Map<String, dynamic> map) {
+        return Func(
             $id: map['\$id'].toString(),
             $permissions: Permissions.fromMap(map['\$permissions']),
             name: map['name'].toString(),

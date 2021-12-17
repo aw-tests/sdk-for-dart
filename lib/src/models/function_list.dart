@@ -5,7 +5,7 @@ class FunctionList {
     /// Total number of items available on the server.
     final int sum;
     /// List of functions.
-    final List<XFunction> functions;
+    final List<Func> functions;
 
     FunctionList({
         required this.sum,
@@ -15,7 +15,7 @@ class FunctionList {
     factory FunctionList.fromMap(Map<String, dynamic> map) {
         return FunctionList(
             sum: map['sum'],
-            functions: List<XFunction>.from(map['functions'].map((p) => XFunction.fromMap(p))),
+            functions: List<Func>.from(map['functions'].map((p) => Func.fromMap(p))),
         );
     }
 
