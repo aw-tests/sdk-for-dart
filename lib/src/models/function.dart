@@ -4,20 +4,20 @@ part of dart_appwrite.models;
 class Func {
     /// Function ID.
     final String $id;
-    /// Function permissions.
-    final Permissions $permissions;
+    /// Execution permissions.
+    final List execute;
     /// Function name.
     final String name;
     /// Function creation date in Unix timestamp.
     final int dateCreated;
     /// Function update date in Unix timestamp.
     final int dateUpdated;
-    /// Function status. Possible values: disabled, enabled
+    /// Function status. Possible values: `disabled`, `enabled`
     final String status;
     /// Function execution runtime.
     final String runtime;
-    /// Function active tag ID.
-    final String tag;
+    /// Function&#039;s active deployment ID.
+    final String deployment;
     /// Function environment variables.
     final String vars;
     /// Function trigger events.
@@ -33,13 +33,13 @@ class Func {
 
     Func({
         required this.$id,
-        required this.$permissions,
+        required this.execute,
         required this.name,
         required this.dateCreated,
         required this.dateUpdated,
         required this.status,
         required this.runtime,
-        required this.tag,
+        required this.deployment,
         required this.vars,
         required this.events,
         required this.schedule,
@@ -51,13 +51,13 @@ class Func {
     factory Func.fromMap(Map<String, dynamic> map) {
         return Func(
             $id: map['\$id'].toString(),
-            $permissions: Permissions.fromMap(map['\$permissions']),
+            execute: map['execute'],
             name: map['name'].toString(),
             dateCreated: map['dateCreated'],
             dateUpdated: map['dateUpdated'],
             status: map['status'].toString(),
             runtime: map['runtime'].toString(),
-            tag: map['tag'].toString(),
+            deployment: map['deployment'].toString(),
             vars: map['vars'].toString(),
             events: map['events'],
             schedule: map['schedule'].toString(),
@@ -70,13 +70,13 @@ class Func {
     Map<String, dynamic> toMap() {
         return {
             "\$id": $id,
-            "\$permissions": $permissions.toMap(),
+            "execute": execute,
             "name": name,
             "dateCreated": dateCreated,
             "dateUpdated": dateUpdated,
             "status": status,
             "runtime": runtime,
-            "tag": tag,
+            "deployment": deployment,
             "vars": vars,
             "events": events,
             "schedule": schedule,

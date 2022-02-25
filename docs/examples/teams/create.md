@@ -11,6 +11,7 @@ void main() { // Init SDK
   ;
 
   Future result = teams.create(
+    teamId: '[TEAM_ID]',
     name: '[NAME]',
   );
 

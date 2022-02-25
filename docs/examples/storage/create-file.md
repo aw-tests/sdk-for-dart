@@ -12,6 +12,8 @@ void main() { // Init SDK
   ;
 
   Future result = storage.createFile(
+    bucketId: '[BUCKET_ID]',
+    fileId: '[FILE_ID]',
     file: await MultipartFile.fromPath('file', './path-to-files/image.jpg', 'image.jpg'),
   );
 

@@ -5,13 +5,14 @@ import 'client_stub.dart'
 import 'response.dart';
 
 abstract class Client {
+  static const int CHUNK_SIZE = 5*1024*1024;
   late Map<String, String> config;
   late String _endPoint;
 
   String get endPoint => _endPoint;
 
   factory Client(
-          {String endPoint = 'https://appwrite.io/v1',
+          {String endPoint = 'https://HOSTNAME/v1',
           bool selfSigned = false}) =>
       createClient(endPoint: endPoint, selfSigned: selfSigned);
 
