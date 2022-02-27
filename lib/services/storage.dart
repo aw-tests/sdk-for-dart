@@ -297,7 +297,7 @@ class Storage extends Service {
      /// string arguments for cutting and resizing your preview image. Preview is
      /// supported only for image files smaller than 10MB.
      ///
-     Future getFilePreview({required String bucketId, required String fileId, int? width, int? height, String? gravity, int? quality, int? borderWidth, String? borderColor, int? borderRadius, double? opacity, int? rotation, String? background, String? output}) async {
+     Future<Uint8List>  getFilePreview({required String bucketId, required String fileId, int? width, int? height, String? gravity, int? quality, int? borderWidth, String? borderColor, int? borderRadius, double? opacity, int? rotation, String? background, String? output}) async {
         final String path = '/storage/buckets/{bucketId}/files/{fileId}/preview'.replaceAll('{bucketId}', bucketId).replaceAll('{fileId}', fileId);
 
         final Map<String, dynamic> params = {
@@ -312,15 +312,12 @@ class Storage extends Service {
             'rotation': rotation,
             'background': background,
             'output': output,
+            'project': client.config['project'],
+            'key': client.config['key'],
         };
 
-        final Map<String, String> headers = {
-            'content-type': 'application/json',
-        };
-
-
-        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return  res.data;
+        final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
+        return res.data;
     }
 
      /// Get File for View
