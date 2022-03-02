@@ -19,7 +19,7 @@ class Func {
     /// Function&#039;s active deployment ID.
     final String deployment;
     /// Function environment variables.
-    final String vars;
+    final Map<String, dynamic> vars;
     /// Function trigger events.
     final List events;
     /// Function execution schedult in CRON format.
@@ -58,7 +58,7 @@ class Func {
             status: map['status'].toString(),
             runtime: map['runtime'].toString(),
             deployment: map['deployment'].toString(),
-            vars: map['vars'].toString(),
+            vars: map['vars'],
             events: map['events'],
             schedule: map['schedule'].toString(),
             scheduleNext: map['scheduleNext'],

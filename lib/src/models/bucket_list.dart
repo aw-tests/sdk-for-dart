@@ -2,26 +2,26 @@ part of dart_appwrite.models;
 
 /// Buckets List
 class BucketList {
-    /// Total number of items available on the server.
-    final int sum;
+    /// Total number of buckets documents that matched your query.
+    final int total;
     /// List of buckets.
     final List<Bucket> buckets;
 
     BucketList({
-        required this.sum,
+        required this.total,
         required this.buckets,
     });
 
     factory BucketList.fromMap(Map<String, dynamic> map) {
         return BucketList(
-            sum: map['sum'],
+            total: map['total'],
             buckets: List<Bucket>.from(map['buckets'].map((p) => Bucket.fromMap(p))),
         );
     }
 
     Map<String, dynamic> toMap() {
         return {
-            "sum": sum,
+            "total": total,
             "buckets": buckets.map((p) => p.toMap()),
         };
     }
