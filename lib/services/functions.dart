@@ -1,5 +1,7 @@
 part of dart_appwrite;
 
+     /// The Functions Service allows you view, create and manage your Cloud
+     /// Functions.
 class Functions extends Service {
     Functions(Client client): super(client);
 
@@ -60,7 +62,7 @@ class Functions extends Service {
 
      /// List the currently active function runtimes.
      ///
-     /// Get a list of all runtimes that are currently active in your project.
+     /// Get a list of all runtimes that are currently active on your instance.
      ///
      Future<models.RuntimeList> listRuntimes() async {
         final String path = '/functions/runtimes';
