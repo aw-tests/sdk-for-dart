@@ -1,3 +1,10 @@
+## 4.0.2
+* Fix null issues with float attributes (https://github.com/appwrite/sdk-for-dart/issues/17 and https://github.com/appwrite/sdk-for-dart/issues/16)
+
+## 4.0.1
+* Fix InputFile filename param
+* Fix examples
+
 ## 4.0.0
 * Support for Appwrite 0.13
 * **BREAKING** **Tags** have been renamed to **Deployments**
