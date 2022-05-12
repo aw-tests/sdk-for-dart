@@ -132,6 +132,25 @@ class Users extends Service {
         return models.LogList.fromMap(res.data);
     }
 
+     /// Get User Memberships
+     ///
+     /// Get the user membership list by its unique ID.
+     ///
+     Future<models.MembershipList> getMemberships({required String userId}) async {
+        final String path = '/users/{userId}/memberships'.replaceAll('{userId}', userId);
+
+        final Map<String, dynamic> params = {
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return models.MembershipList.fromMap(res.data);
+    }
+
      /// Update Name
      ///
      /// Update the user name by its unique ID.
