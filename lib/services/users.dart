@@ -195,6 +195,26 @@ class Users extends Service {
         return models.User.fromMap(res.data);
     }
 
+     /// Update Phone
+     ///
+     /// Update the user phone by its unique ID.
+     ///
+     Future<models.User> updatePhone({required String userId, required String number}) async {
+        final String path = '/users/{userId}/phone'.replaceAll('{userId}', userId);
+
+        final Map<String, dynamic> params = {
+            'number': number,
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+        return models.User.fromMap(res.data);
+    }
+
      /// Get User Preferences
      ///
      /// Get the user preferences by its unique ID.
@@ -318,11 +338,31 @@ class Users extends Service {
      ///
      /// Update the user email verification status by its unique ID.
      ///
-     Future<models.User> updateVerification({required String userId, required bool emailVerification}) async {
+     Future<models.User> updateEmailVerification({required String userId, required bool emailVerification}) async {
         final String path = '/users/{userId}/verification'.replaceAll('{userId}', userId);
 
         final Map<String, dynamic> params = {
             'emailVerification': emailVerification,
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+        return models.User.fromMap(res.data);
+    }
+
+     /// Update Phone Verification
+     ///
+     /// Update the user phone verification status by its unique ID.
+     ///
+     Future<models.User> updatePhoneVerification({required String userId, required bool phoneVerification}) async {
+        final String path = '/users/{userId}/verification/phone'.replaceAll('{userId}', userId);
+
+        final Map<String, dynamic> params = {
+            'phoneVerification': phoneVerification,
         };
 
         final Map<String, String> headers = {

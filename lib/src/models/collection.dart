@@ -4,6 +4,10 @@ part of dart_appwrite.models;
 class Collection {
     /// Collection ID.
     final String $id;
+    /// Collection creation date in Unix timestamp.
+    final int $createdAt;
+    /// Collection update date in Unix timestamp.
+    final int $updatedAt;
     /// Collection read permissions.
     final List $read;
     /// Collection write permissions.
@@ -21,6 +25,8 @@ class Collection {
 
     Collection({
         required this.$id,
+        required this.$createdAt,
+        required this.$updatedAt,
         required this.$read,
         required this.$write,
         required this.name,
@@ -33,6 +39,8 @@ class Collection {
     factory Collection.fromMap(Map<String, dynamic> map) {
         return Collection(
             $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'],
+            $updatedAt: map['\$updatedAt'],
             $read: map['\$read'],
             $write: map['\$write'],
             name: map['name'].toString(),
@@ -46,6 +54,8 @@ class Collection {
     Map<String, dynamic> toMap() {
         return {
             "\$id": $id,
+            "\$createdAt": $createdAt,
+            "\$updatedAt": $updatedAt,
             "\$read": $read,
             "\$write": $write,
             "name": name,

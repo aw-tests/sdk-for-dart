@@ -116,6 +116,30 @@ class Account extends Service {
         return models.User.fromMap(res.data);
     }
 
+     /// Update Account Phone
+     ///
+     /// Update currently logged in user account phone number. After changing phone
+     /// number, the user confirmation status will get reset. A new confirmation SMS
+     /// is not sent automatically however you can use the phone confirmation
+     /// endpoint again to send the confirmation SMS.
+     ///
+     Future<models.User> updatePhone({required String number, required String password}) async {
+        final String path = '/account/phone';
+
+        final Map<String, dynamic> params = {
+            'number': number,
+            'password': password,
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+        return models.User.fromMap(res.data);
+    }
+
      /// Get Account Preferences
      ///
      /// Get currently logged in user preferences as a key-value object.
@@ -349,8 +373,8 @@ class Account extends Service {
      /// should redirect the user back to your app and allow you to complete the
      /// verification process by verifying both the **userId** and **secret**
      /// parameters. Learn more about how to [complete the verification
-     /// process](/docs/client/account#accountUpdateVerification). The verification
-     /// link sent to the user's email address is valid for 7 days.
+     /// process](/docs/client/account#accountUpdateEmailVerification). The
+     /// verification link sent to the user's email address is valid for 7 days.
      /// 
      /// Please note that in order to avoid a [Redirect
      /// Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md),
@@ -383,6 +407,55 @@ class Account extends Service {
      ///
      Future<models.Token> updateVerification({required String userId, required String secret}) async {
         final String path = '/account/verification';
+
+        final Map<String, dynamic> params = {
+            'userId': userId,
+            'secret': secret,
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+        return models.Token.fromMap(res.data);
+    }
+
+     /// Create Phone Verification
+     ///
+     /// Use this endpoint to send a verification message to your user's phone
+     /// number to confirm they are the valid owners of that address. The provided
+     /// secret should allow you to complete the verification process by verifying
+     /// both the **userId** and **secret** parameters. Learn more about how to
+     /// [complete the verification
+     /// process](/docs/client/account#accountUpdatePhoneVerification). The
+     /// verification link sent to the user's phone number is valid for 15 minutes.
+     ///
+     Future<models.Token> createPhoneVerification() async {
+        final String path = '/account/verification/phone';
+
+        final Map<String, dynamic> params = {
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+        return models.Token.fromMap(res.data);
+    }
+
+     /// Create Phone Verification (confirmation)
+     ///
+     /// Use this endpoint to complete the user phone verification process. Use the
+     /// **userId** and **secret** that were sent to your user's phone number to
+     /// verify the user email ownership. If confirmed this route will return a 200
+     /// status code.
+     ///
+     Future<models.Token> updatePhoneVerification({required String userId, required String secret}) async {
+        final String path = '/account/verification/phone';
 
         final Map<String, dynamic> params = {
             'userId': userId,
