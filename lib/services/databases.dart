@@ -11,20 +11,25 @@ class Databases extends Service {
 
         final Map<String, dynamic> params = {
             'search': search,
-            'limit': limit,
-            'offset': offset,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
-            'orderType': orderType,
+'limit': limit,
+'offset': offset,
+'cursor': cursor,
+'cursorDirection': cursorDirection,
+'orderType': orderType,
+
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.CollectionList.fromMap(res.data);
+
+
     }
 
      /// Create Database
@@ -32,17 +37,22 @@ class Databases extends Service {
         final String path = '/databases';
 
         final Map<String, dynamic> params = {
+            
             'databaseId': databaseId,
-            'name': name,
+'name': name,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.Database.fromMap(res.data);
+
+
     }
 
      /// Get Database
@@ -50,15 +60,20 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.Collection.fromMap(res.data);
+
+
     }
 
      /// Update Database
@@ -66,16 +81,21 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
         final Map<String, dynamic> params = {
+            
             'name': name,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+
         return models.Collection.fromMap(res.data);
+
+
     }
 
      /// Delete Database
@@ -83,15 +103,20 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+
         return  res.data;
+
+
     }
 
      /// List Collections
@@ -100,20 +125,25 @@ class Databases extends Service {
 
         final Map<String, dynamic> params = {
             'search': search,
-            'limit': limit,
-            'offset': offset,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
-            'orderType': orderType,
+'limit': limit,
+'offset': offset,
+'cursor': cursor,
+'cursorDirection': cursorDirection,
+'orderType': orderType,
+
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.CollectionList.fromMap(res.data);
+
+
     }
 
      /// Create Collection
@@ -121,20 +151,25 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections'.replaceAll('{databaseId}', databaseId);
 
         final Map<String, dynamic> params = {
+            
             'collectionId': collectionId,
-            'name': name,
-            'permission': permission,
-            'read': read,
-            'write': write,
+'name': name,
+'permission': permission,
+'read': read,
+'write': write,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.Collection.fromMap(res.data);
+
+
     }
 
      /// Get Collection
@@ -142,15 +177,20 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.Collection.fromMap(res.data);
+
+
     }
 
      /// Update Collection
@@ -158,20 +198,25 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
             'name': name,
-            'permission': permission,
-            'read': read,
-            'write': write,
-            'enabled': enabled,
+'permission': permission,
+'read': read,
+'write': write,
+'enabled': enabled,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+
         return models.Collection.fromMap(res.data);
+
+
     }
 
      /// Delete Collection
@@ -179,15 +224,20 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+
         return  res.data;
+
+
     }
 
      /// List Attributes
@@ -195,15 +245,20 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.AttributeList.fromMap(res.data);
+
+
     }
 
      /// Create Boolean Attribute
@@ -211,19 +266,24 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
             'key': key,
-            'required': xrequired,
-            'default': xdefault,
-            'array': array,
+'required': xrequired,
+'default': xdefault,
+'array': array,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.AttributeBoolean.fromMap(res.data);
+
+
     }
 
      /// Create Email Attribute
@@ -231,19 +291,24 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/email'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
             'key': key,
-            'required': xrequired,
-            'default': xdefault,
-            'array': array,
+'required': xrequired,
+'default': xdefault,
+'array': array,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.AttributeEmail.fromMap(res.data);
+
+
     }
 
      /// Create Enum Attribute
@@ -251,20 +316,25 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
             'key': key,
-            'elements': elements,
-            'required': xrequired,
-            'default': xdefault,
-            'array': array,
+'elements': elements,
+'required': xrequired,
+'default': xdefault,
+'array': array,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.AttributeEnum.fromMap(res.data);
+
+
     }
 
      /// Create Float Attribute
@@ -272,21 +342,26 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/float'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
             'key': key,
-            'required': xrequired,
-            'min': min,
-            'max': max,
-            'default': xdefault,
-            'array': array,
+'required': xrequired,
+'min': min,
+'max': max,
+'default': xdefault,
+'array': array,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.AttributeFloat.fromMap(res.data);
+
+
     }
 
      /// Create Integer Attribute
@@ -294,21 +369,26 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
             'key': key,
-            'required': xrequired,
-            'min': min,
-            'max': max,
-            'default': xdefault,
-            'array': array,
+'required': xrequired,
+'min': min,
+'max': max,
+'default': xdefault,
+'array': array,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.AttributeInteger.fromMap(res.data);
+
+
     }
 
      /// Create IP Address Attribute
@@ -316,19 +396,24 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
             'key': key,
-            'required': xrequired,
-            'default': xdefault,
-            'array': array,
+'required': xrequired,
+'default': xdefault,
+'array': array,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.AttributeIp.fromMap(res.data);
+
+
     }
 
      /// Create String Attribute
@@ -336,20 +421,25 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/string'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
             'key': key,
-            'size': size,
-            'required': xrequired,
-            'default': xdefault,
-            'array': array,
+'size': size,
+'required': xrequired,
+'default': xdefault,
+'array': array,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.AttributeString.fromMap(res.data);
+
+
     }
 
      /// Create URL Attribute
@@ -357,19 +447,24 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/url'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
             'key': key,
-            'required': xrequired,
-            'default': xdefault,
-            'array': array,
+'required': xrequired,
+'default': xdefault,
+'array': array,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.AttributeUrl.fromMap(res.data);
+
+
     }
 
      /// Get Attribute
@@ -377,15 +472,20 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return  res.data;
+
+
     }
 
      /// Delete Attribute
@@ -393,15 +493,20 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+
         return  res.data;
+
+
     }
 
      /// List Documents
@@ -410,21 +515,26 @@ class Databases extends Service {
 
         final Map<String, dynamic> params = {
             'queries': queries,
-            'limit': limit,
-            'offset': offset,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
-            'orderAttributes': orderAttributes,
-            'orderTypes': orderTypes,
+'limit': limit,
+'offset': offset,
+'cursor': cursor,
+'cursorDirection': cursorDirection,
+'orderAttributes': orderAttributes,
+'orderTypes': orderTypes,
+
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.DocumentList.fromMap(res.data);
+
+
     }
 
      /// Create Document
@@ -432,19 +542,24 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
             'documentId': documentId,
-            'data': data,
-            'read': read,
-            'write': write,
+'data': data,
+'read': read,
+'write': write,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.Document.fromMap(res.data);
+
+
     }
 
      /// Get Document
@@ -452,15 +567,20 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.Document.fromMap(res.data);
+
+
     }
 
      /// Update Document
@@ -468,18 +588,23 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
 
         final Map<String, dynamic> params = {
+            
             'data': data,
-            'read': read,
-            'write': write,
+'read': read,
+'write': write,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.Document.fromMap(res.data);
+
+
     }
 
      /// Delete Document
@@ -487,15 +612,20 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+
         return  res.data;
+
+
     }
 
      /// List Indexes
@@ -503,15 +633,20 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/indexes'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.IndexList.fromMap(res.data);
+
+
     }
 
      /// Create Index
@@ -519,19 +654,24 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/indexes'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
+            
             'key': key,
-            'type': type,
-            'attributes': attributes,
-            'orders': orders,
+'type': type,
+'attributes': attributes,
+'orders': orders,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.Index.fromMap(res.data);
+
+
     }
 
      /// Get Index
@@ -539,15 +679,20 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.Index.fromMap(res.data);
+
+
     }
 
      /// Delete Index
@@ -555,14 +700,19 @@ class Databases extends Service {
         final String path = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+
         return  res.data;
+
+
     }
 }

@@ -12,15 +12,20 @@ class Account extends Service {
         final String path = '/account';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Update Account Email
@@ -38,17 +43,22 @@ class Account extends Service {
         final String path = '/account/email';
 
         final Map<String, dynamic> params = {
+            
             'email': email,
-            'password': password,
+'password': password,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Get Account Logs
@@ -61,16 +71,21 @@ class Account extends Service {
 
         final Map<String, dynamic> params = {
             'limit': limit,
-            'offset': offset,
+'offset': offset,
+
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.LogList.fromMap(res.data);
+
+
     }
 
      /// Update Account Name
@@ -81,16 +96,21 @@ class Account extends Service {
         final String path = '/account/name';
 
         final Map<String, dynamic> params = {
+            
             'name': name,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Update Account Password
@@ -103,17 +123,22 @@ class Account extends Service {
         final String path = '/account/password';
 
         final Map<String, dynamic> params = {
+            
             'password': password,
-            'oldPassword': oldPassword,
+'oldPassword': oldPassword,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Update Account Phone
@@ -127,17 +152,22 @@ class Account extends Service {
         final String path = '/account/phone';
 
         final Map<String, dynamic> params = {
+            
             'number': number,
-            'password': password,
+'password': password,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Get Account Preferences
@@ -148,15 +178,20 @@ class Account extends Service {
         final String path = '/account/prefs';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.Preferences.fromMap(res.data);
+
+
     }
 
      /// Update Account Preferences
@@ -169,16 +204,21 @@ class Account extends Service {
         final String path = '/account/prefs';
 
         final Map<String, dynamic> params = {
+            
             'prefs': prefs,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Create Password Recovery
@@ -196,17 +236,22 @@ class Account extends Service {
         final String path = '/account/recovery';
 
         final Map<String, dynamic> params = {
+            
             'email': email,
-            'url': url,
+'url': url,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.Token.fromMap(res.data);
+
+
     }
 
      /// Create Password Recovery (confirmation)
@@ -225,19 +270,24 @@ class Account extends Service {
         final String path = '/account/recovery';
 
         final Map<String, dynamic> params = {
+            
             'userId': userId,
-            'secret': secret,
-            'password': password,
-            'passwordAgain': passwordAgain,
+'secret': secret,
+'password': password,
+'passwordAgain': passwordAgain,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+
         return models.Token.fromMap(res.data);
+
+
     }
 
      /// Get Account Sessions
@@ -249,15 +299,20 @@ class Account extends Service {
         final String path = '/account/sessions';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.SessionList.fromMap(res.data);
+
+
     }
 
      /// Delete All Account Sessions
@@ -269,15 +324,20 @@ class Account extends Service {
         final String path = '/account/sessions';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+
         return  res.data;
+
+
     }
 
      /// Get Session By ID
@@ -289,15 +349,20 @@ class Account extends Service {
         final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.Session.fromMap(res.data);
+
+
     }
 
      /// Update Session (Refresh Tokens)
@@ -310,15 +375,20 @@ class Account extends Service {
         final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.Session.fromMap(res.data);
+
+
     }
 
      /// Delete Account Session
@@ -332,15 +402,20 @@ class Account extends Service {
         final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+
         return  res.data;
+
+
     }
 
      /// Update Account Status
@@ -353,15 +428,20 @@ class Account extends Service {
         final String path = '/account/status';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Create Email Verification
@@ -386,16 +466,21 @@ class Account extends Service {
         final String path = '/account/verification';
 
         final Map<String, dynamic> params = {
+            
             'url': url,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.Token.fromMap(res.data);
+
+
     }
 
      /// Create Email Verification (confirmation)
@@ -409,17 +494,22 @@ class Account extends Service {
         final String path = '/account/verification';
 
         final Map<String, dynamic> params = {
+            
             'userId': userId,
-            'secret': secret,
+'secret': secret,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+
         return models.Token.fromMap(res.data);
+
+
     }
 
      /// Create Phone Verification
@@ -436,15 +526,20 @@ class Account extends Service {
         final String path = '/account/verification/phone';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.Token.fromMap(res.data);
+
+
     }
 
      /// Create Phone Verification (confirmation)
@@ -458,16 +553,21 @@ class Account extends Service {
         final String path = '/account/verification/phone';
 
         final Map<String, dynamic> params = {
+            
             'userId': userId,
-            'secret': secret,
+'secret': secret,
+
         };
 
         final Map<String, String> headers = {
-            'content-type': 'application/json',
+                        'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+
         return models.Token.fromMap(res.data);
+
+
     }
 }
