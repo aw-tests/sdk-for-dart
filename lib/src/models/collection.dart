@@ -12,6 +12,8 @@ class Collection {
     final List $read;
     /// Collection write permissions.
     final List $write;
+    /// Database ID.
+    final String databaseId;
     /// Collection name.
     final String name;
     /// Collection enabled.
@@ -29,6 +31,7 @@ class Collection {
         required this.$updatedAt,
         required this.$read,
         required this.$write,
+        required this.databaseId,
         required this.name,
         required this.enabled,
         required this.permission,
@@ -43,6 +46,7 @@ class Collection {
             $updatedAt: map['\$updatedAt'],
             $read: map['\$read'],
             $write: map['\$write'],
+            databaseId: map['databaseId'].toString(),
             name: map['name'].toString(),
             enabled: map['enabled'],
             permission: map['permission'].toString(),
@@ -58,6 +62,7 @@ class Collection {
             "\$updatedAt": $updatedAt,
             "\$read": $read,
             "\$write": $write,
+            "databaseId": databaseId,
             "name": name,
             "enabled": enabled,
             "permission": permission,
