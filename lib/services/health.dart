@@ -18,7 +18,7 @@ class Health extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -42,7 +42,7 @@ class Health extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -67,7 +67,7 @@ class Health extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -91,7 +91,7 @@ class Health extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -117,7 +117,7 @@ class Health extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -138,7 +138,7 @@ class Health extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -163,7 +163,7 @@ class Health extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -188,7 +188,7 @@ class Health extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -212,7 +212,7 @@ class Health extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -242,7 +242,7 @@ class Health extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 

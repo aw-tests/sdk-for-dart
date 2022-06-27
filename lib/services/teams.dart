@@ -28,7 +28,7 @@ class Teams extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -57,7 +57,7 @@ class Teams extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -81,7 +81,7 @@ class Teams extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -107,7 +107,7 @@ class Teams extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -132,7 +132,7 @@ class Teams extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -163,7 +163,7 @@ class Teams extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -205,7 +205,7 @@ class Teams extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -230,7 +230,7 @@ class Teams extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -257,7 +257,7 @@ class Teams extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -283,7 +283,7 @@ class Teams extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -315,7 +315,7 @@ class Teams extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 

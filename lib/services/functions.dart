@@ -25,7 +25,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -59,7 +59,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -83,7 +83,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -107,7 +107,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -137,7 +137,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -161,7 +161,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -192,7 +192,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -219,7 +219,7 @@ class Functions extends Service {
      Future<models.Deployment> createDeployment({required String functionId, required String entrypoint, required InputFile code, required bool activate, Function(UploadProgress)? onProgress}) async {
         final String path = '/functions/{functionId}/deployments'.replaceAll('{functionId}', functionId);
 
-              final Map<String, dynamic> params = {
+        final Map<String, dynamic> params = {
             
             'entrypoint': entrypoint,
 'code': code,
@@ -228,7 +228,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'multipart/form-data',
+            'content-type': 'multipart/form-data',
 
         };
 
@@ -261,7 +261,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -287,7 +287,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -311,7 +311,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -332,7 +332,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -364,7 +364,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -382,7 +382,7 @@ class Functions extends Service {
      /// updates on the current execution status. Once this endpoint is called, your
      /// function execution process will start asynchronously.
      ///
-     Future<models.Execution> createExecution({required String functionId, String? data, bool? xasync}) async {
+     Future<models.Execution> createExecution({required String functionId, String? data, bool? async}) async {
         final String path = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
@@ -393,7 +393,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -417,7 +417,7 @@ class Functions extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 

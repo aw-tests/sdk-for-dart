@@ -24,7 +24,7 @@ class Storage extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -58,7 +58,7 @@ class Storage extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -83,7 +83,7 @@ class Storage extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -116,7 +116,7 @@ class Storage extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -140,7 +140,7 @@ class Storage extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -172,7 +172,7 @@ class Storage extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -207,7 +207,7 @@ class Storage extends Service {
      Future<models.File> createFile({required String bucketId, required String fileId, required InputFile file, List? read, List? write, Function(UploadProgress)? onProgress}) async {
         final String path = '/storage/buckets/{bucketId}/files'.replaceAll('{bucketId}', bucketId);
 
-              final Map<String, dynamic> params = {
+        final Map<String, dynamic> params = {
             
             'fileId': fileId,
 'file': file,
@@ -217,7 +217,7 @@ class Storage extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'multipart/form-data',
+            'content-type': 'multipart/form-data',
 
         };
 
@@ -252,7 +252,7 @@ class Storage extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -279,7 +279,7 @@ class Storage extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
@@ -304,7 +304,7 @@ class Storage extends Service {
         };
 
         final Map<String, String> headers = {
-                        'content-type': 'application/json',
+            'content-type': 'application/json',
 
         };
 
