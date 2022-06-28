@@ -34,7 +34,7 @@ class Databases extends Service {
     }
 
      /// Create Database
-     Future<models.Database> create({required String databaseId, required String name}) async {
+     Future<models.Database> create({required String name}) async {
         final String path = '/databases';
 
         final Map<String, dynamic> params = {
