@@ -65,7 +65,7 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
 
-        return models.Function.fromMap(res.data);
+        return models.Func.fromMap(res.data);
 
 
     }
@@ -113,7 +113,7 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
 
-        return models.Function.fromMap(res.data);
+        return models.Func.fromMap(res.data);
 
 
     }
@@ -143,7 +143,7 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
 
-        return models.Function.fromMap(res.data);
+        return models.Func.fromMap(res.data);
 
 
     }
@@ -293,7 +293,7 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.Function.fromMap(res.data);
+        return models.Func.fromMap(res.data);
 
 
     }
