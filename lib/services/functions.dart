@@ -382,7 +382,7 @@ class Functions extends Service {
      /// updates on the current execution status. Once this endpoint is called, your
      /// function execution process will start asynchronously.
      ///
-     Future<models.Execution> createExecution({required String functionId, String? data, bool? async}) async {
+     Future<models.Execution> createExecution({required String functionId, String? data, bool? xasync}) async {
         final String path = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
