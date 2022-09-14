@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Buckets List
-class BucketList {
+class BucketList implements Model {
     /// Total number of buckets documents that matched your query.
     final int total;
     /// List of buckets.
@@ -22,7 +22,7 @@ class BucketList {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "buckets": buckets.map((p) => p.toMap()),
+            "buckets": buckets.map((p) => p.toMap()).toList(),
         };
     }
 }

@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Functions List
-class FunctionList {
+class FunctionList implements Model {
     /// Total number of functions documents that matched your query.
     final int total;
     /// List of functions.
@@ -22,7 +22,7 @@ class FunctionList {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "functions": functions.map((p) => p.toMap()),
+            "functions": functions.map((p) => p.toMap()).toList(),
         };
     }
 }

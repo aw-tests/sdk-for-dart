@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Documents List
-class DocumentList {
+class DocumentList implements Model {
     /// Total number of documents documents that matched your query.
     final int total;
     /// List of documents.
@@ -22,7 +22,7 @@ class DocumentList {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "documents": documents.map((p) => p.toMap()),
+            "documents": documents.map((p) => p.toMap()).toList(),
         };
     }
 

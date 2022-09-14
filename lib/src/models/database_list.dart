@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Databases List
-class DatabaseList {
+class DatabaseList implements Model {
     /// Total number of databases documents that matched your query.
     final int total;
     /// List of databases.
@@ -22,7 +22,7 @@ class DatabaseList {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "databases": databases.map((p) => p.toMap()),
+            "databases": databases.map((p) => p.toMap()).toList(),
         };
     }
 }

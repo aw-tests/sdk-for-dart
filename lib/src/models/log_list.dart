@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Logs List
-class LogList {
+class LogList implements Model {
     /// Total number of logs documents that matched your query.
     final int total;
     /// List of logs.
@@ -22,7 +22,7 @@ class LogList {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "logs": logs.map((p) => p.toMap()),
+            "logs": logs.map((p) => p.toMap()).toList(),
         };
     }
 }

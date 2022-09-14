@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Currencies List
-class CurrencyList {
+class CurrencyList implements Model {
     /// Total number of currencies documents that matched your query.
     final int total;
     /// List of currencies.
@@ -22,7 +22,7 @@ class CurrencyList {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "currencies": currencies.map((p) => p.toMap()),
+            "currencies": currencies.map((p) => p.toMap()).toList(),
         };
     }
 }

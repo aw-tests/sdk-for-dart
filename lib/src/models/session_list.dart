@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Sessions List
-class SessionList {
+class SessionList implements Model {
     /// Total number of sessions documents that matched your query.
     final int total;
     /// List of sessions.
@@ -22,7 +22,7 @@ class SessionList {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "sessions": sessions.map((p) => p.toMap()),
+            "sessions": sessions.map((p) => p.toMap()).toList(),
         };
     }
 }

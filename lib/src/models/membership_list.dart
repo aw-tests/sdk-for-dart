@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Memberships List
-class MembershipList {
+class MembershipList implements Model {
     /// Total number of memberships documents that matched your query.
     final int total;
     /// List of memberships.
@@ -22,7 +22,7 @@ class MembershipList {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "memberships": memberships.map((p) => p.toMap()),
+            "memberships": memberships.map((p) => p.toMap()).toList(),
         };
     }
 }

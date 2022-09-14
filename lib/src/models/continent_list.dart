@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Continents List
-class ContinentList {
+class ContinentList implements Model {
     /// Total number of continents documents that matched your query.
     final int total;
     /// List of continents.
@@ -22,7 +22,7 @@ class ContinentList {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "continents": continents.map((p) => p.toMap()),
+            "continents": continents.map((p) => p.toMap()).toList(),
         };
     }
 }

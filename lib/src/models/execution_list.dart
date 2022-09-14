@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Executions List
-class ExecutionList {
+class ExecutionList implements Model {
     /// Total number of executions documents that matched your query.
     final int total;
     /// List of executions.
@@ -22,7 +22,7 @@ class ExecutionList {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "executions": executions.map((p) => p.toMap()),
+            "executions": executions.map((p) => p.toMap()).toList(),
         };
     }
 }

@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Languages List
-class LanguageList {
+class LanguageList implements Model {
     /// Total number of languages documents that matched your query.
     final int total;
     /// List of languages.
@@ -22,7 +22,7 @@ class LanguageList {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "languages": languages.map((p) => p.toMap()),
+            "languages": languages.map((p) => p.toMap()).toList(),
         };
     }
 }

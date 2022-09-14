@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Deployments List
-class DeploymentList {
+class DeploymentList implements Model {
     /// Total number of deployments documents that matched your query.
     final int total;
     /// List of deployments.
@@ -22,7 +22,7 @@ class DeploymentList {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "deployments": deployments.map((p) => p.toMap()),
+            "deployments": deployments.map((p) => p.toMap()).toList(),
         };
     }
 }
