@@ -2,7 +2,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 
 void main() { // Init SDK
   Client client = Client();
-  Graphql graphql = Graphql(client);
+  Databases databases = Databases(client);
 
   client
     .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
@@ -10,8 +10,12 @@ void main() { // Init SDK
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
   ;
 
-  Future result = graphql.get(
-    query: '[QUERY]',
+  Future result = databases.updateDatetimeAttribute(
+    databaseId: '[DATABASE_ID]',
+    collectionId: '[COLLECTION_ID]',
+    key: '',
+    xrequired: false,
+    xdefault: '',
   );
 
   result
